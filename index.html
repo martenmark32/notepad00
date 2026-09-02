@@ -1,0 +1,494 @@
+﻿<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحرر الاحترافي المتقدم +</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --bg-color: #f5f6fa;
+            --text-color: #2c3e50;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 1rem;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        .fab-menu {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .fab-menu.active {
+            display: flex;
+        }
+
+        .fab-item {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .fab-item:hover {
+            transform: scale(1.1);
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Toolbar Improvements */
+        .toolbar {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin-bottom: 1rem;
+        }
+
+        .toolbar-group {
+            display: inline-flex;
+            gap: 5px;
+            padding: 5px 10px;
+            border-right: 2px solid #eee;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            color: var(--text-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Editor Improvements */
+        .editor-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        #editor {
+            min-height: 600px;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        #editor:focus {
+            outline: none;
+            box-shadow: 0 4px 20px rgba(52, 152, 219, 0.2);
+        }
+
+        /* Word Count Badge */
+        .word-count-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: white;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            background: var(--success-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+        }
+
+        .dark-mode #editor,
+        .dark-mode .toolbar,
+        .dark-mode .status-bar {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+
+        .dark-mode .btn {
+            background: #3d3d3d;
+            color: #ffffff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .toolbar-group {
+                border: none;
+                padding: 5px;
+            }
+
+            .btn {
+                padding: 6px 12px;
+            }
+
+            #editor {
+                padding: 1rem;
+            }
+
+            .word-count-badge {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-edit"></i> المحرر الاحترافي المتقدم +</h1>
+            <div class="header-actions">
+                <button class="btn" onclick="toggleDarkMode()">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <!-- تنسيق النص -->
+            <div class="toolbar-group">
+                <button class="btn" onclick="execCommand('bold')" title="غامق">
+                    <i class="fas fa-bold"></i>
+                </button>
+                <button class="btn" onclick="execCommand('italic')" title="مائل">
+                    <i class="fas fa-italic"></i>
+                </button>
+                <button class="btn" onclick="execCommand('underline')" title="تحته خط">
+                    <i class="fas fa-underline"></i>
+                </button>
+                <button class="btn" onclick="execCommand('strikethrough')" title="يتوسطه خط">
+                    <i class="fas fa-strikethrough"></i>
+                </button>
+            </div>
+
+            <!-- محاذاة -->
+            <div class="toolbar-group">
+                <button class="btn" onclick="execCommand('justifyRight')" title="محاذاة لليمين">
+                    <i class="fas fa-align-right"></i>
+                </button>
+                <button class="btn" onclick="execCommand('justifyCenter')" title="توسيط">
+                    <i class="fas fa-align-center"></i>
+                </button>
+                <button class="btn" onclick="execCommand('justifyLeft')" title="محاذاة لليسار">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <button class="btn" onclick="execCommand('justifyFull')" title="ضبط">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+            </div>
+
+            <!-- قوائم -->
+            <div class="toolbar-group">
+                <button class="btn" onclick="execCommand('insertUnorderedList')" title="قائمة نقطية">
+                    <i class="fas fa-list-ul"></i>
+                </button>
+                <button class="btn" onclick="execCommand('insertOrderedList')" title="قائمة رقمية">
+                    <i class="fas fa-list-ol"></i>
+                </button>
+            </div>
+
+            <!-- تنسيقات متقدمة -->
+            <div class="toolbar-group">
+                <select class="btn" onchange="execCommandWithArg('formatBlock', this.value)">
+                    <option value="p">فقرة عادية</option>
+                    <option value="h1">عنوان 1</option>
+                    <option value="h2">عنوان 2</option>
+                    <option value="h3">عنوان 3</option>
+                    <option value="blockquote">اقتباس</option>
+                </select>
+                <select class="btn" onchange="execCommandWithArg('fontName', this.value)">
+                    <option value="Cairo">Cairo</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Editor -->
+        <div class="editor-container">
+            <div id="editor" contenteditable="true"></div>
+            <div class="word-count-badge">
+                <i class="fas fa-pencil-alt"></i>
+                <span id="wordCount">0 كلمة</span>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span id="lastSaved">آخر حفظ: لم يتم الحفظ بعد</span>
+            <span id="charCount">0 حرف</span>
+        </div>
+
+        <!-- Floating Action Button -->
+        <div class="fab" onclick="toggleFabMenu()">
+            <i class="fas fa-plus"></i>
+        </div>
+        <div class="fab-menu">
+            <div class="fab-item" onclick="createNewDocument()" title="مستند جديد">
+                <i class="fas fa-file"></i>
+            </div>
+            <div class="fab-item" onclick="saveToLocalStorage()" title="حفظ">
+                <i class="fas fa-save"></i>
+            </div>
+            <div class="fab-item" onclick="exportAsPDF()" title="PDF تصدير">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isDarkMode = false;
+        let autoSaveInterval;
+
+        // تنفيذ الأوامر
+        function execCommand(command) {
+            document.execCommand(command, false, null);
+            updateWordCount();
+        }
+
+        function execCommandWithArg(command, arg) {
+            document.execCommand(command, false, arg);
+            updateWordCount();
+        }
+
+        // تحديث عداد الكلمات
+        function updateWordCount() {
+            const text = document.getElementById('editor').innerText;
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            const chars = text.length;
+            
+            document.getElementById('wordCount').innerText = `${words.length} كلمة`;
+            document.getElementById('charCount').innerText = `${chars} حرف`;
+        }
+
+        // إدارة الحفظ
+        function saveToLocalStorage() {
+            const content = document.getElementById('editor').innerHTML;
+            localStorage.setItem('editorContent', content);
+            updateLastSaved();
+            showNotification('تم الحفظ بنجاح!');
+        }
+
+        function loadFromLocalStorage() {
+            const content = localStorage.getItem('editorContent');
+            if (content) {
+                document.getElementById('editor').innerHTML = content;
+                updateWordCount();
+            }
+        }
+
+        // إنشاء مستند جديد
+        function createNewDocument() {
+            if (confirm('هل أنت متأكد من إنشاء مستند جديد؟ سيتم مسح المحتوى الحالي.')) {
+                document.getElementById('editor').innerHTML = '';
+                updateWordCount();
+            }
+        }
+
+        // تصدير المستند
+        function exportAsPDF() {
+            window.print();
+        }
+
+        function downloadFile(content, filename, contentType) {
+            const blob = new Blob([content], { type: contentType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // إدارة الإشعارات
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // تحديث وقت آخر حفظ
+        function updateLastSaved() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('ar-EG');
+            document.getElementById('lastSaved').innerText = `آخر حفظ: ${timeString}`;
+        }
+
+        // الوضع الليلي
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode');
+            const themeIcon = document.querySelector('.header-actions .btn i');
+            themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // إدارة قائمة FAB
+        function toggleFabMenu() {
+            document.querySelector('.fab-menu').classList.toggle('active');
+        }
+
+        // تهيئة التطبيق
+        window.onload = function() {
+            loadFromLocalStorage();
+            
+            // الحفظ التلقائي كل 5 دقائق
+            autoSaveInterval = setInterval(saveToLocalStorage, 300000);
+            
+            // تحديث عداد الكلمات عند الكتابة
+            document.getElementById('editor').addEventListener('input', updateWordCount);
+            
+            // تحذير عند مغادرة الصفحة
+            window.addEventListener('beforeunload', (e) => {
+                e.preventDefault();
+                e.returnValue = '';
+            });
+        };
+    </script>
+</body>
+</html>
