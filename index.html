@@ -61,38 +61,21 @@
         .section-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); }
         .section-title { font-size: clamp(1.8rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.2; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; word-wrap: break-word; }
 
-        /* ⭐ TOP INFO BAR (Visitors + Profile) */
-        .top-info-bar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1001;
-            background: rgba(5,5,7,0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-subtle);
-            padding: 6px 20px; display: flex; align-items: center; justify-content: space-between;
-            font-size: 0.78rem; color: rgba(255,255,255,0.5);
-        }
+        /* TOP INFO BAR */
+        .top-info-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 1001; background: rgba(5,5,7,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-subtle); padding: 6px 20px; display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
         .top-bar-right, .top-bar-left { display: flex; align-items: center; gap: 10px; }
-        
-        /* Visitor Counter */
         .visitor-counter { display: flex; align-items: center; gap: 6px; }
         .visitor-counter svg { width: 14px; height: 14px; stroke: var(--accent-cyan); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
         .visitor-counter .count { font-weight: 800; color: var(--accent-cyan); font-variant-numeric: tabular-nums; }
         .visitor-dot { width: 5px; height: 5px; border-radius: 50%; background: #2ecc71; box-shadow: 0 0 6px #2ecc71; animation: blink 2s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* Mini Profile Button */
-        .profile-trigger {
-            display: flex; align-items: center; gap: 8px; cursor: pointer;
-            background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle);
-            border-radius: 50px; padding: 4px 14px 4px 4px; transition: 0.3s;
-        }
+        .profile-trigger { display: flex; align-items: center; gap: 8px; cursor: pointer; background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); border-radius: 50px; padding: 4px 14px 4px 4px; transition: 0.3s; }
         .profile-trigger:hover { background: rgba(255,255,255,0.1); border-color: var(--accent-cyan); }
-        .profile-trigger-avatar {
-            width: 26px; height: 26px; border-radius: 50%; background: var(--gradient-main);
-            display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0;
-        }
-        .profile-trigger-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-trigger-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+        .profile-trigger-avatar img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .profile-trigger-avatar svg { width: 14px; height: 14px; stroke: #fff; fill: none; stroke-width: 2; }
         .profile-trigger-name { font-weight: 600; color: rgba(255,255,255,0.8); max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .profile-trigger-label { color: rgba(255,255,255,0.4); }
 
         /* NAVBAR */
         header { position: fixed; top: 35px; left: 0; right: 0; z-index: 1000; padding: 15px 0; transition: all 0.5s var(--ease-out); width: 100%; }
@@ -177,58 +160,80 @@
         .pkg-btn { width: 100%; margin-top: auto; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); color: #fff; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; font-family: var(--font); font-size: 1rem; }
         .pkg-btn:hover { background: var(--gradient-main); border-color: transparent; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
 
-        /* TEAM */
-        .team-section { padding: 80px 0; overflow: hidden; }
-        .team-container { background: linear-gradient(160deg, rgba(0,229,255,0.03), rgba(176,38,255,0.05)); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 60px 30px; text-align: center; position: relative; overflow: hidden; }
+        /* ⭐ TEAM + REVIEWS COMBINED SECTION */
+        .team-reviews-section { padding: 80px 0; overflow: hidden; }
+        .team-reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+        
+        /* Team Side */
+        .team-container { background: linear-gradient(160deg, rgba(0,229,255,0.03), rgba(176,38,255,0.05)); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 40px 25px; text-align: center; position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; }
         .team-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent); }
-        .team-title { font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 900; color: #fff; margin-bottom: 20px; line-height: 1.4; }
+        .team-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; color: #fff; margin-bottom: 15px; line-height: 1.4; }
         .team-title span { color: var(--accent-cyan); }
-        .team-desc { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 700px; margin: 0 auto 40px; line-height: 1.8; }
-        .team-steps { display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
-        .team-step { display: flex; flex-direction: column; align-items: center; gap: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); padding: 20px; border-radius: 16px; min-width: 140px; transition: 0.3s; }
-        .team-step:hover { border-color: var(--accent-cyan); transform: translateY(-5px); }
-        .team-step-icon { width: 50px; height: 50px; border-radius: 50%; background: rgba(0,229,255,0.1); color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; }
-        .team-step-icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-        .team-step-text { font-size: 0.9rem; font-weight: 700; color: #fff; }
-        .team-arrow { color: var(--accent-purple); font-size: 1.5rem; font-weight: bold; }
-        .team-btn { background: transparent; border: 2px solid var(--accent-cyan); color: var(--accent-cyan); padding: 14px 30px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: var(--font); transition: 0.3s; }
+        .team-desc { font-size: 1rem; color: rgba(255,255,255,0.7); margin-bottom: 30px; line-height: 1.8; flex: 1; }
+        .team-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; align-items: center; }
+        .team-step { display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); padding: 12px 18px; border-radius: 12px; width: 100%; max-width: 280px; transition: 0.3s; }
+        .team-step:hover { border-color: var(--accent-cyan); transform: translateX(-5px); }
+        .team-step-icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(0,229,255,0.1); color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .team-step-icon svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .team-step-text { font-size: 0.85rem; font-weight: 700; color: #fff; }
+        .team-btn { background: transparent; border: 2px solid var(--accent-cyan); color: var(--accent-cyan); padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: var(--font); transition: 0.3s; margin-top: auto; }
         .team-btn:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 20px rgba(0,229,255,0.4); }
 
-        /* ⭐ REVIEWS SECTION (STANDALONE) */
-        .reviews-section { padding: 80px 0; overflow: hidden; }
-        .reviews-wrapper {
-            max-width: 800px; margin: 0 auto;
-            background: var(--surface-glass); border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-xl); padding: 40px 30px; position: relative; overflow: hidden;
-        }
-        .reviews-wrapper::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-purple), transparent); }
-        .reviews-header { text-align: center; margin-bottom: 30px; }
+        /* Reviews Side */
+        .reviews-container { background: var(--surface-glass); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 30px 25px; position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; }
+        .reviews-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-purple), transparent); }
+        .reviews-header { text-align: center; margin-bottom: 20px; }
+        .reviews-header h3 { font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
+        .reviews-header p { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
         
-        .review-form-card { background: rgba(0,0,0,0.2); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 25px; margin-bottom: 25px; }
-        .star-rating { display: flex; gap: 8px; margin-bottom: 15px; direction: ltr; justify-content: center; }
-        .star-rating .star { width: 30px; height: 30px; cursor: pointer; transition: 0.2s; fill: rgba(255,255,255,0.1); stroke: rgba(255,255,255,0.3); stroke-width: 1.5; }
+        .review-form-card { background: rgba(0,0,0,0.2); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; }
+        .star-rating { display: flex; gap: 6px; margin-bottom: 12px; direction: ltr; justify-content: center; }
+        .star-rating .star { width: 26px; height: 26px; cursor: pointer; transition: 0.2s; fill: rgba(255,255,255,0.1); stroke: rgba(255,255,255,0.3); stroke-width: 1.5; }
         .star-rating .star.active, .star-rating .star:hover { fill: #FFD700; stroke: #FFD700; filter: drop-shadow(0 0 5px rgba(255,215,0,0.5)); }
         .star-rating .star:hover ~ .star { fill: rgba(255,255,255,0.1); stroke: rgba(255,255,255,0.3); filter: none; }
-        .review-textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px 16px; color: #fff; font-family: var(--font); font-size: 0.95rem; resize: vertical; min-height: 90px; transition: 0.3s; margin-bottom: 15px; }
+        .review-textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px 14px; color: #fff; font-family: var(--font); font-size: 0.9rem; resize: vertical; min-height: 80px; transition: 0.3s; margin-bottom: 12px; }
         .review-textarea:focus { border-color: var(--accent-cyan); background: rgba(0,0,0,0.5); box-shadow: 0 0 0 3px rgba(0,229,255,0.05); }
-        .review-submit-btn { background: var(--gradient-main); color: #fff; border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: var(--font); transition: 0.3s; display: block; margin: 0 auto; }
+        .review-submit-btn { background: var(--gradient-main); color: #fff; border: none; padding: 10px 28px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; cursor: pointer; font-family: var(--font); transition: 0.3s; display: block; margin: 0 auto; }
         .review-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(0,229,255,0.3); }
 
-        .reviews-list { display: flex; flex-direction: column; gap: 12px; max-height: 500px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; padding-left: 5px; }
+        .reviews-list { display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; padding-left: 5px; flex: 1; }
         .reviews-list::-webkit-scrollbar { width: 4px; }
         .reviews-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
-        .review-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 18px; transition: 0.3s; }
+        .review-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 15px; transition: 0.3s; position: relative; }
         .review-card:hover { border-color: var(--border-highlight); }
-        .review-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-        .review-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; color: #fff; flex-shrink: 0; }
-        .review-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .review-info h5 { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
+        .review-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .review-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; color: #fff; flex-shrink: 0; overflow: hidden; }
+        .review-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .review-info h5 { font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
         .review-stars { display: flex; gap: 2px; direction: ltr; }
-        .review-stars svg { width: 12px; height: 12px; fill: #FFD700; stroke: none; }
+        .review-stars svg { width: 11px; height: 11px; fill: #FFD700; stroke: none; }
         .review-stars svg.empty { fill: rgba(255,255,255,0.1); }
-        .review-text { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
-        .review-date { font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 6px; }
-        .no-reviews { text-align: center; color: rgba(255,255,255,0.3); font-size: 0.9rem; padding: 25px; }
+        .review-text { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+        .review-date { font-size: 0.7rem; color: rgba(255,255,255,0.3); margin-top: 6px; }
+        .no-reviews { text-align: center; color: rgba(255,255,255,0.3); font-size: 0.85rem; padding: 20px; }
+
+        /* Delete Button */
+        .review-delete-btn {
+            position: absolute; top: 12px; left: 12px;
+            background: rgba(255,45,123,0.1); border: 1px solid rgba(255,45,123,0.2);
+            color: var(--accent-pink); width: 28px; height: 28px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            transition: 0.3s; opacity: 0; pointer-events: none;
+        }
+        .review-card:hover .review-delete-btn.can-delete { opacity: 1; pointer-events: all; }
+        .review-delete-btn:hover { background: var(--accent-pink); color: #fff; }
+        .review-delete-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* My Reviews in Profile Modal */
+        .my-reviews-section { margin-top: 20px; border-top: 1px solid var(--border-subtle); padding-top: 20px; }
+        .my-reviews-title { font-size: 1rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .my-reviews-title svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+        .my-review-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px; margin-bottom: 10px; position: relative; }
+        .my-review-item .review-text { font-size: 0.85rem; margin-bottom: 5px; }
+        .my-review-item .review-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+        .my-review-delete { background: none; border: none; color: var(--accent-pink); cursor: pointer; font-size: 0.75rem; font-family: var(--font); font-weight: 600; padding: 4px 8px; border-radius: 6px; transition: 0.3s; }
+        .my-review-delete:hover { background: rgba(255,45,123,0.1); }
+        .no-my-reviews { text-align: center; color: rgba(255,255,255,0.3); font-size: 0.85rem; padding: 15px; }
 
         /* APP */
         .app-section { padding: 60px 0 100px; }
@@ -269,7 +274,6 @@
         .whatsapp-btn:active { transform: translateY(0); }
         .whatsapp-btn svg { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
 
-        /* Number Type */
         .number-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
         .number-type-option { background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px; cursor: pointer; transition: 0.3s; text-align: center; position: relative; }
         .number-type-option:hover, .number-type-option.selected { border-color: var(--accent-cyan); background: rgba(0,229,255,0.05); }
@@ -277,7 +281,6 @@
         .number-type-option h5 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
         .number-type-option p { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin: 0; }
 
-        /* Profile Modal Specifics */
         .profile-modal-avatar { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--accent-cyan); margin: 0 auto 20px; overflow: hidden; cursor: pointer; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; transition: 0.3s; }
         .profile-modal-avatar:hover { border-color: var(--accent-purple); box-shadow: 0 0 20px rgba(0,229,255,0.3); }
         .profile-modal-avatar img { width: 100%; height: 100%; object-fit: cover; display: none; }
@@ -318,13 +321,14 @@
             .hero-content h1 { font-size: 2.8rem; }
             .pkg-value { font-size: 2rem; }
             .pkg-new-price { font-size: 1.8rem; }
-            .team-container, .get-number-container, .reviews-wrapper { padding: 30px 18px; }
-            .team-steps { flex-direction: column; gap: 10px; }
-            .team-arrow { transform: rotate(90deg); }
-            .team-step { width: 100%; max-width: 250px; }
+            .team-reviews-grid { grid-template-columns: 1fr; }
+            .team-container, .reviews-container { padding: 30px 18px; }
+            .team-steps { flex-direction: column; }
+            .team-step { max-width: 100%; }
             .number-features { flex-direction: column; align-items: center; }
             .number-feature { width: 100%; max-width: 280px; justify-content: center; }
             .number-type-grid { grid-template-columns: 1fr; }
+            .get-number-container { padding: 30px 18px; }
         }
     </style>
 </head>
@@ -337,7 +341,7 @@
         <div class="loader-text">جاري التحميل...</div>
     </div>
 
-    <!-- ⭐ TOP INFO BAR (Visitors + Profile Mini) -->
+    <!-- TOP INFO BAR -->
     <div class="top-info-bar">
         <div class="top-bar-right">
             <div class="visitor-counter">
@@ -389,7 +393,7 @@
                     <li><a href="#hero" data-section="hero"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>الرئيسية</a></li>
                     <li><a href="#get-number" data-section="get-number"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>رقمي</a></li>
                     <li><a href="#packages" data-section="packages"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>الباقات</a></li>
-                    <li><a href="#team" data-section="team"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>فريق العمل</a></li>
+                    <li><a href="#team-reviews" data-section="team-reviews"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>فريق العمل</a></li>
                 </ul>
                 <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
             </nav>
@@ -456,50 +460,47 @@
         </div>
     </section>
 
-    <!-- Team -->
-    <section id="team" class="team-section">
+    <!-- ⭐ TEAM + REVIEWS COMBINED -->
+    <section id="team-reviews" class="team-reviews-section">
         <div class="container">
-            <div class="team-container fade-up">
-                <div class="section-badge">👥 ميزة حصرية</div>
-                <h2 class="team-title">خليك إنت وصاحبك على نفس <span>الفريق!</span></h2>
-                <p class="team-desc">لو إنت وصاحبك أو حد من قرايبك بتكلموا بعض كتير، ليه تدفعوا على كل مكالمة؟ مع نظام "فريق العمل"، تقدر تجمع خطين مع بعض في مكان واحد، وتتكلموا بينكم ببلاش من غير ما وحدات الباقة تتأثر.</p>
-                <div class="team-steps">
-                    <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><span class="team-step-text">خطين مع بعض</span></div>
-                    <span class="team-arrow">←</span>
-                    <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="team-step-text">فريق واحد</span></div>
-                    <span class="team-arrow">←</span>
-                    <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="team-step-text">مكالمات مجانية</span></div>
-                    <span class="team-arrow">←</span>
-                    <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="team-step-text">توفير أكتر</span></div>
-                </div>
-                <button class="team-btn" onclick="openTeamModal()">عايز تعمل فريقك؟ اطلب خطين دلوقتي</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⭐ REVIEWS SECTION (STANDALONE) -->
-    <section id="reviews" class="reviews-section">
-        <div class="container">
-            <div class="reviews-wrapper fade-up">
-                <div class="reviews-header">
-                    <div class="section-badge">💬 آراء العملاء</div>
-                    <h2 class="section-title" style="font-size: clamp(1.5rem, 3.5vw, 2.2rem);">شاركنا رأيك</h2>
-                    <p style="color: rgba(255,255,255,0.5); font-size: 0.95rem;">رأيك يهمنا ويساعدنا نتطور</p>
-                </div>
-
-                <div class="review-form-card">
-                    <div class="star-rating" id="starRating">
-                        <svg class="star" data-value="1" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg class="star" data-value="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg class="star" data-value="3" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg class="star" data-value="4" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg class="star" data-value="5" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <div class="team-reviews-grid fade-up">
+                
+                <!-- Team Side -->
+                <div class="team-container">
+                    <div class="section-badge">👥 ميزة حصرية</div>
+                    <h2 class="team-title">خليك إنت وصاحبك على نفس <span>الفريق!</span></h2>
+                    <p class="team-desc">لو إنت وصاحبك أو حد من قرايبك بتكلموا بعض كتير، ليه تدفعوا على كل مكالمة؟ مع نظام "فريق العمل"، تقدر تجمع خطين مع بعض وتتكلموا ببلاش.</p>
+                    <div class="team-steps">
+                        <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><span class="team-step-text">خطين مع بعض</span></div>
+                        <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="team-step-text">فريق واحد</span></div>
+                        <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="team-step-text">مكالمات مجانية</span></div>
+                        <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="team-step-text">توفير أكتر</span></div>
                     </div>
-                    <textarea class="review-textarea" id="reviewText" placeholder="اكتب تجربتك معانا هنا..."></textarea>
-                    <button class="review-submit-btn" onclick="submitReview()">أضف تعليقك</button>
+                    <button class="team-btn" onclick="openTeamModal()">عايز تعمل فريقك؟ اطلب خطين دلوقتي</button>
                 </div>
 
-                <div class="reviews-list" id="reviewsList"></div>
+                <!-- Reviews Side -->
+                <div class="reviews-container">
+                    <div class="reviews-header">
+                        <div class="section-badge" style="margin-bottom:10px;">💬 آراء العملاء</div>
+                        <h3>شاركنا رأيك</h3>
+                        <p>رأيك يهمنا ويساعدنا نتطور</p>
+                    </div>
+
+                    <div class="review-form-card">
+                        <div class="star-rating" id="starRating">
+                            <svg class="star" data-value="1" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="star" data-value="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="star" data-value="3" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="star" data-value="4" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="star" data-value="5" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <textarea class="review-textarea" id="reviewText" placeholder="اكتب تجربتك معانا هنا..."></textarea>
+                        <button class="review-submit-btn" onclick="submitReview()">أضف تعليقك</button>
+                    </div>
+
+                    <div class="reviews-list" id="reviewsList"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -593,7 +594,7 @@
         modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeModal(); });
         document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
 
-        // ===== ⭐ PROFILE MODAL =====
+        // ===== ⭐ PROFILE MODAL WITH MY REVIEWS =====
         function openProfileModal() {
             modalTitle.textContent = "حسابي الشخصي";
             const savedName = localStorage.getItem('ybn_profile_name') || '';
@@ -601,6 +602,37 @@
             const savedAvatar = localStorage.getItem('ybn_avatar') || '';
             const avatarDisplay = savedAvatar ? 'display:block' : 'display:none';
             const iconDisplay = savedAvatar ? 'display:none' : 'display:block';
+
+            // Get my reviews
+            const allReviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
+            const myReviews = allReviews.filter(r => r.name === savedName && savedName !== '');
+
+            let myReviewsHTML = '';
+            if (savedName && myReviews.length > 0) {
+                const starSVG = '<svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:#FFD700;stroke:none;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+                const emptySVG = '<svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:rgba(255,255,255,0.1);stroke:none;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+                
+                myReviewsHTML = `
+                    <div class="my-reviews-section">
+                        <div class="my-reviews-title">
+                            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            تعليقاتي (${myReviews.length})
+                        </div>
+                        ${myReviews.map(r => {
+                            const stars = Array.from({length:5},(_,i)=>i<r.rating?starSVG:emptySVG).join('');
+                            return `<div class="my-review-item">
+                                <div class="review-text">${r.text}</div>
+                                <div class="review-meta">
+                                    <span>${stars} · ${r.date}</span>
+                                    <button class="my-review-delete" onclick="deleteReview(${r.id})">حذف</button>
+                                </div>
+                            </div>`;
+                        }).join('')}
+                    </div>
+                `;
+            } else if (savedName) {
+                myReviewsHTML = `<div class="my-reviews-section"><div class="my-reviews-title"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>تعليقاتي</div><div class="no-my-reviews">مافيش تعليقات لسه 💬</div></div>`;
+            }
 
             modalBody.innerHTML = `
                 <label class="profile-modal-avatar" for="modalAvatarInput">
@@ -615,6 +647,7 @@
                     <div class="form-group"><label class="form-label">الإيميل</label><input type="email" id="modalEmail" class="form-input" value="${savedEmail}" placeholder="example@mail.com" required></div>
                     <button type="submit" class="whatsapp-btn" style="background:var(--gradient-main);">حفظ البيانات</button>
                 </form>
+                ${myReviewsHTML}
             `;
             modalOverlay.classList.add('active');
             document.body.classList.add('modal-open');
@@ -624,14 +657,42 @@
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    localStorage.setItem('ybn_avatar', e.target.result);
-                    updateAllAvatars(e.target.result);
+                    const newAvatar = e.target.result;
+                    localStorage.setItem('ybn_avatar', newAvatar);
+                    
+                    // Update top bar
+                    updateAllAvatars(newAvatar);
+                    
+                    // Update modal preview
                     const img = document.getElementById('modalAvatarImg');
-                    if(img) { img.src = e.target.result; img.style.display = 'block'; }
+                    if(img) { img.src = newAvatar; img.style.display = 'block'; }
                     const svg = document.querySelector('.profile-modal-avatar svg');
                     if(svg) svg.style.display = 'none';
+                    
+                    // ⭐ SYNC: Update avatar in ALL existing reviews
+                    syncAvatarInReviews(newAvatar);
+                    
+                    showToast('تم تحديث الصورة ✓', 'success');
                 };
                 reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function syncAvatarInReviews(newAvatar) {
+            const name = localStorage.getItem('ybn_profile_name');
+            if (!name) return;
+            
+            const reviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
+            let updated = false;
+            reviews.forEach(r => {
+                if (r.name === name) {
+                    r.avatar = newAvatar;
+                    updated = true;
+                }
+            });
+            if (updated) {
+                localStorage.setItem('ybn_reviews', JSON.stringify(reviews));
+                renderReviews(); // Re-render to show updated avatars
             }
         }
 
@@ -640,8 +701,19 @@
             const name = document.getElementById('modalName').value.trim();
             const email = document.getElementById('modalEmail').value.trim();
             if (!name || !email) { showToast('يرجى ملء جميع الحقول', 'error'); return; }
+            
+            const oldName = localStorage.getItem('ybn_profile_name');
             localStorage.setItem('ybn_profile_name', name);
             localStorage.setItem('ybn_profile_email', email);
+            
+            // If name changed, update reviews with old name
+            if (oldName && oldName !== name) {
+                const reviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
+                reviews.forEach(r => { if (r.name === oldName) r.name = name; });
+                localStorage.setItem('ybn_reviews', JSON.stringify(reviews));
+                renderReviews();
+            }
+            
             updateTopBar(name);
             closeModal();
             showToast('تم حفظ بياناتك بنجاح ✓', 'success');
@@ -750,7 +822,7 @@
             closeModal(); showToast('تم تحويلك إلى WhatsApp','success');
         }
 
-        // ===== ⭐ REVIEWS SYSTEM =====
+        // ===== ⭐ REVIEWS SYSTEM WITH DELETE & SYNC =====
         document.querySelectorAll('#starRating .star').forEach(star => {
             star.addEventListener('click', () => { selectedRating = parseInt(star.dataset.value); updateStars(selectedRating); });
             star.addEventListener('mouseenter', () => { updateStars(parseInt(star.dataset.value)); });
@@ -760,30 +832,56 @@
 
         function submitReview() {
             const text = document.getElementById('reviewText').value.trim();
-            const name = localStorage.getItem('ybn_profile_name') || 'زائر';
+            const name = localStorage.getItem('ybn_profile_name');
             const avatar = localStorage.getItem('ybn_avatar') || null;
+            
+            if (!name) { showToast('سجّل حسابك الأول عشان تقدر تعلق', 'error'); openProfileModal(); return; }
             if (selectedRating === 0) { showToast('يرجى اختيار عدد النجوم', 'error'); return; }
             if (!text) { showToast('يرجى كتابة تعليقك', 'error'); return; }
+            
             const review = { id: Date.now(), name, avatar, rating: selectedRating, text, date: new Date().toLocaleDateString('ar-EG') };
             const reviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
             reviews.unshift(review);
             localStorage.setItem('ybn_reviews', JSON.stringify(reviews));
+            
             document.getElementById('reviewText').value = '';
             selectedRating = 0; updateStars(0);
             renderReviews();
             showToast('تم إضافة تعليقك بنجاح ✓', 'success');
         }
 
+        function deleteReview(id) {
+            if (!confirm('متأكد إنك عايز تحذف التعليق ده؟')) return;
+            const reviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
+            const filtered = reviews.filter(r => r.id !== id);
+            localStorage.setItem('ybn_reviews', JSON.stringify(filtered));
+            renderReviews();
+            showToast('تم حذف التعليق ✓', 'success');
+        }
+
         function renderReviews() {
             const reviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
             const list = document.getElementById('reviewsList');
+            const myName = localStorage.getItem('ybn_profile_name') || '';
+            
             if (reviews.length === 0) { list.innerHTML = '<div class="no-reviews">لا توجد تعليقات بعد. كن أول من يشارك رأيه! 💬</div>'; return; }
+            
             const starSVG = '<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
             const emptySVG = '<svg class="empty" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+            const deleteSVG = '<svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
+            
             list.innerHTML = reviews.map(r => {
                 const stars = Array.from({length:5},(_,i)=>i<r.rating?starSVG:emptySVG).join('');
                 const avHTML = r.avatar ? `<div class="review-avatar"><img src="${r.avatar}" alt="${r.name}"></div>` : `<div class="review-avatar">${r.name.charAt(0)}</div>`;
-                return `<div class="review-card fade-up visible"><div class="review-card-header">${avHTML}<div class="review-info"><h5>${r.name}</h5><div class="review-stars">${stars}</div></div></div><div class="review-text">${r.text}</div><div class="review-date">${r.date}</div></div>`;
+                const canDelete = (r.name === myName && myName !== '') ? 'can-delete' : '';
+                const deleteBtn = canDelete ? `<button class="review-delete-btn ${canDelete}" onclick="deleteReview(${r.id})" title="حذف التعليق">${deleteSVG}</button>` : '';
+                
+                return `<div class="review-card fade-up visible">
+                    ${deleteBtn}
+                    <div class="review-card-header">${avHTML}<div class="review-info"><h5>${r.name}</h5><div class="review-stars">${stars}</div></div></div>
+                    <div class="review-text">${r.text}</div>
+                    <div class="review-date">${r.date}</div>
+                </div>`;
             }).join('');
         }
 
