@@ -34,13 +34,10 @@
         body { background-color: var(--bg-deep); color: #fff; font-family: var(--font); line-height: 1.7; }
         body.modal-open { overflow: hidden; }
 
-        /* ⭐ CUSTOM SCROLLBAR */
+        /* CUSTOM SCROLLBAR */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { 
-            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple)); 
-            border-radius: 10px; border: 2px solid var(--bg-deep);
-        }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple)); border-radius: 10px; border: 2px solid var(--bg-deep); }
         ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--accent-purple), var(--accent-cyan)); }
         * { scrollbar-width: thin; scrollbar-color: var(--accent-cyan) var(--bg-deep); }
 
@@ -150,7 +147,7 @@
         @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
         /* PACKAGES */
-        .packages-section { padding: 60px 0 80px; position: relative; overflow: hidden; }
+        .packages-section { padding: 60px 0 100px; position: relative; overflow: hidden; }
         .packages-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
         .tab-btn { background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); color: rgba(255,255,255,0.6); padding: 12px 28px; border-radius: 50px; cursor: pointer; font-family: var(--font); font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; flex: 1 1 auto; text-align: center; max-width: 200px; }
         .tab-btn.active, .tab-btn:hover { background: rgba(0,229,255,0.1); border-color: var(--accent-cyan); color: var(--accent-cyan); box-shadow: 0 0 15px rgba(0,229,255,0.1); }
@@ -169,40 +166,6 @@
         .pkg-save { display: inline-block; background: rgba(46, 204, 113, 0.1); color: #2ecc71; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(46, 204, 113, 0.2); }
         .pkg-btn { width: 100%; margin-top: auto; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); color: #fff; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; font-family: var(--font); font-size: 1rem; }
         .pkg-btn:hover { background: var(--gradient-main); border-color: transparent; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-
-        /* ⭐ SERVICE EXPLANATION SECTION */
-        .service-explain-section { padding: 80px 0; overflow: hidden; }
-        .service-explain-container {
-            background: linear-gradient(160deg, rgba(176,38,255,0.04), rgba(0,229,255,0.04));
-            border: 1px solid var(--border-subtle); border-radius: var(--radius-xl);
-            padding: 50px 30px; position: relative; overflow: hidden;
-        }
-        .service-explain-container::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
-        }
-        .service-explain-header { text-align: center; margin-bottom: 40px; }
-        .service-explain-desc {
-            font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 700px;
-            margin: 0 auto; line-height: 1.9; text-align: center;
-        }
-        .explain-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px; margin-top: 35px;
-        }
-        .explain-card {
-            background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg); padding: 28px 24px; transition: 0.3s;
-            position: relative; overflow: hidden;
-        }
-        .explain-card:hover { border-color: var(--border-highlight); background: rgba(255,255,255,0.04); transform: translateY(-3px); }
-        .explain-card-num {
-            position: absolute; top: 15px; left: 18px; font-size: 3rem; font-weight: 900;
-            background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            opacity: 0.08; line-height: 1; pointer-events: none;
-        }
-        .explain-card h4 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 10px; position: relative; z-index: 1; }
-        .explain-card p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.7; position: relative; z-index: 1; }
 
         /* TEAM SECTION */
         .team-section { padding: 80px 0; overflow: hidden; }
@@ -258,7 +221,6 @@
         .whatsapp-btn { width: 100%; background: #25D366; border: none; color: #fff; padding: 16px; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background 0.3s ease, transform 0.2s ease; margin-top: 15px; font-family: var(--font); }
         .whatsapp-btn:hover { background: #20bd5a; transform: translateY(-2px); }
         .whatsapp-btn:active { transform: translateY(0); }
-        .whatsapp-btn.svg-green svg { fill: currentColor; }
         .whatsapp-btn svg { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
 
         .number-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
@@ -274,15 +236,26 @@
         .order-row.total { border-top: 1px solid var(--border-subtle); padding-top: 10px; margin-top: 10px; font-weight: 800; color: #fff; font-size: 1.1rem; }
         .order-row.total span:last-child { color: var(--accent-cyan); }
 
-        /* PROFILE MODAL STYLES */
+        /* ⭐ PROFILE MODAL - CENTERED AVATAR */
         .profile-modal { text-align: center; }
-        .profile-avatar-wrapper { position: relative; width: 90px; height: 90px; margin: 0 auto 22px; cursor: pointer; }
-        .profile-avatar-circle { width: 90px; height: 90px; border-radius: 50%; overflow: hidden; border: 2px solid var(--border-highlight); background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; transition: border-color 0.3s; }
+        .profile-avatar-wrapper { 
+            position: relative; width: 90px; height: 90px; 
+            margin: 0 auto 22px; cursor: pointer; 
+        }
+        .profile-avatar-circle { 
+            width: 90px; height: 90px; border-radius: 50%; overflow: hidden; 
+            border: 2px solid var(--border-highlight); background: rgba(255,255,255,0.03); 
+            display: flex; align-items: center; justify-content: center; transition: border-color 0.3s; 
+        }
         .profile-avatar-wrapper:hover .profile-avatar-circle { border-color: var(--accent-cyan); }
         .profile-avatar-circle img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .profile-avatar-circle svg { width: 36px; height: 36px; stroke: rgba(255,255,255,0.2); fill: none; stroke-width: 1.5; }
         .profile-avatar-wrapper input[type="file"] { display: none; }
-        .profile-camera-icon { position: absolute; bottom: 0; right: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-cyan); border: 2px solid #0f0f13; display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; pointer-events: none; }
+        .profile-camera-icon { 
+            position: absolute; bottom: 0; right: 0; width: 28px; height: 28px; 
+            border-radius: 50%; background: var(--accent-cyan); border: 2px solid #0f0f13; 
+            display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; pointer-events: none; 
+        }
         .profile-avatar-wrapper:hover .profile-camera-icon { opacity: 1; }
         .profile-camera-icon svg { width: 13px; height: 13px; stroke: #000; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
         .profile-form { text-align: right; margin-top: 5px; }
@@ -322,7 +295,7 @@
             .nav-links a { font-size: 1.5rem; }
             .nav-links a svg { width: 24px; height: 24px; }
             .hamburger { display: flex; z-index: 1001; }
-            .services-grid, .packages-grid, .explain-grid { grid-template-columns: 1fr; width: 100%; }
+            .services-grid, .packages-grid { grid-template-columns: 1fr; width: 100%; }
             .glass-card, .pkg-card { min-width: 0; }
             .modal-panel { max-height: 95vh; border-radius: 20px; }
             .modal-body { padding: 20px 18px; }
@@ -331,7 +304,7 @@
             .hero-content h1 { font-size: 2.8rem; }
             .pkg-value { font-size: 2rem; }
             .pkg-new-price { font-size: 1.8rem; }
-            .team-container, .service-explain-container { padding: 30px 18px; }
+            .team-container { padding: 30px 18px; }
             .team-steps { flex-direction: column; gap: 10px; }
             .team-step { width: 100%; max-width: 250px; }
             .number-features { flex-direction: column; align-items: center; }
@@ -470,42 +443,6 @@
         </div>
     </section>
 
-    <!-- ⭐ SERVICE EXPLANATION SECTION -->
-    <section id="service-explain" class="service-explain-section">
-        <div class="container">
-            <div class="service-explain-container fade-up">
-                <div class="service-explain-header">
-                    <div class="section-badge">📋 شرح الخدمة</div>
-                    <h2 class="section-title" style="font-size: clamp(1.5rem, 4vw, 2.3rem);">كل اللي محتاج تعرفه عن خدماتنا</h2>
-                    <p class="service-explain-desc">
-                        هنا هتلاقي شرح مفصل لكل خدمة بنقدمها، إزاي تشتغل، وإيه المميزات اللي هتستفيدها منها. 
-                        نحن بنسعى إن كل حاجة تكون واضحة وشفافة قدامك.
-                    </p>
-                </div>
-
-                <!-- ⭐ ضع محتوى شرح الخدمة هنا -->
-                <div class="explain-grid">
-                    <div class="explain-card">
-                        <span class="explain-card-num">01</span>
-                        <h4>العنوان الأول</h4>
-                        <p>اكتب هنا شرح تفصيلي للنقطة الأولى من الخدمة...</p>
-                    </div>
-                    <div class="explain-card">
-                        <span class="explain-card-num">02</span>
-                        <h4>العنوان التاني</h4>
-                        <p>اكتب هنا شرح تفصيلي للنقطة التانية من الخدمة...</p>
-                    </div>
-                    <div class="explain-card">
-                        <span class="explain-card-num">03</span>
-                        <h4>العنوان التالت</h4>
-                        <p>اكتب هنا شرح تفصيلي للنقطة التالتة من الخدمة...</p>
-                    </div>
-                </div>
-                <!-- ⭐ نهاية محتوى شرح الخدمة -->
-            </div>
-        </div>
-    </section>
-
     <!-- Team Section -->
     <section id="team" class="team-section">
         <div class="container">
@@ -540,7 +477,7 @@
         </div>
     </section>
 
-    <!-- FOOTER WITH DISCLAIMER -->
+    <!-- ⭐ FOOTER WITH SERVICE EXPLAIN LINK -->
     <footer>
         <div class="container">
             <div class="footer-links">
@@ -548,6 +485,7 @@
                 <span class="footer-link" data-modal="privacy">سياسة الخصوصية</span>
                 <span class="footer-link" data-modal="terms">شروط الاستخدام</span>
                 <span class="footer-link" data-modal="contact">تواصل معنا</span>
+                <span class="footer-link" data-modal="service-explain">شرح الخدمة</span>
             </div>
             <p class="footer-copyright">&copy; 2060 YOUR_BRAND_NAME. جميع الحقوق محفوظة.</p>
             <p class="footer-disclaimer">
@@ -600,7 +538,7 @@
         let currentSelectedPlan = null;
         let selectedNumberType = 'من اختياركم';
 
-        // ===== ⭐ MODAL CONTENT DATABASE =====
+        // ===== ⭐ MODAL CONTENT DATABASE (WITH SERVICE EXPLAIN) =====
         const MODAL_CONTENT = {
             about: {
                 title: "عن الموقع",
@@ -680,6 +618,38 @@
                     <h4>وقت الاستجابة</h4>
                     <p>نلتزم بالرد على جميع الاستفسارات خلال ساعة واحدة كحد أقصى خلال ساعات العمل الرسمية.</p>
                     <span class="last-updated">نتطلع لسماع منك 💜</span>
+                </div>`
+            },
+            // ⭐ SERVICE EXPLAIN MODAL CONTENT
+            "service-explain": {
+                title: "شرح الخدمة",
+                html: `<div class="modal-content">
+                    <h4>إزاي الخدمة بتشتغل؟</h4>
+                    <p>خدمتنا بسيطة وواضحة. كل اللي عليك تختار الباقة المناسبة ليك، وتسيب بياناتك، وهنتواصل معاك لتفعيل الخدمة في أسرع وقت.</p>
+                    
+                    <h4>خطوات الاشتراك</h4>
+                    <ul>
+                        <li>اختار الباقة أو الرقم اللي يناسبك من الموقع</li>
+                        <li>سيب بياناتك الأساسية (الاسم والمحافظة)</li>
+                        <li>هنتواصل معاك عبر WhatsApp لتأكيد الطلب</li>
+                        <li>استلم الخط أو الباقة وابدع استخدمها فوراً</li>
+                    </ul>
+                    
+                    <h4>أنواع الخدمات المتاحة</h4>
+                    <ul>
+                        <li><strong>خطوط جديدة:</strong> أرقام مميزة وعادية بأسعار مخفضة</li>
+                        <li><strong>باقات الوحدات:</strong> مكالمات وإنترنت بأسعار أقل من السعر الرسمي</li>
+                        <li><strong>باقات الميجا:</strong> إنترنت فقط بسرعات عالية وأسعار اقتصادية</li>
+                        <li><strong>فريق العمل:</strong> خطين على نفس الحساب بمكالمات مجانية بينكم</li>
+                    </ul>
+                    
+                    <h4>ليه أسعارنا أرخص؟</h4>
+                    <p>نحن نعمل كشريك توزيع معتمد، مما يسمح لنا بتقديم أسعار مخفضة مقارنة بالفروع الرسمية. الفرق بيكون في السعر بس، الخدمة والجودة والضمان كلها زي ما هي بالضبط.</p>
+                    
+                    <h4>الضمان والدعم</h4>
+                    <p>كل خط أو باقة بتيجي بضمان رسمي من شركة الاتصالات. ولو واجهتك أي مشكلة، فريق الدعم بتاعنا موجود يساعدك في أي وقت.</p>
+                    
+                    <span class="last-updated">آخر تحديث: سبتمبر 2026</span>
                 </div>`
             }
         };
@@ -787,7 +757,7 @@
             modalTitle.textContent = "طلب رقم جديد";
             selectedNumberType = 'من اختياركم';
             const govOptions = governorates.map(g => `<option value="${g}">${g}</option>`).join('');
-            modalBody.innerHTML = `<div class="number-modal-content"><p>اختار إزاي عايز رقمك يوصلك، وسيب بياناتك وهنتواصل معاك.</p><label class="form-label">طريقة اختيار الرقم</label><div class="number-type-grid"><div class="number-type-option" onclick="selectNumberType(this,'من اختياري')"><h5>رقم من اختياري 🎯</h5><p>هقولك الرقم اللي أنا عايزه</p></div><div class="number-type-option selected" onclick="selectNumberType(this,'من اختياركم')"><h5>رقم من اختياركم ✨</h5><p>انتوا ترشحوا لي رقم مناسب</p></div></div></div><form onsubmit="handleNumberSubmit(event)"><div class="form-group" id="num-group-name"><label class="form-label">الاسم بالكامل</label><input type="text" id="numName" class="form-input" placeholder="اكتب اسمك..." required><div class="form-error">يرجى كتابة الاسم</div></div><div class="form-group" id="num-group-gov"><label class="form-label">المحافظة</label><select id="numGov" class="form-select" required><option value="" disabled selected>اختر المحافظة...</option>${govOptions}</select><div class="form-error">يرجى اختيار المحافظة</div></div><button type="submit" class="whatsapp-btn svg-green"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>إرسال طلب الرقم عبر WhatsApp</button></form>`;
+            modalBody.innerHTML = `<div class="number-modal-content"><p>اختار إزاي عايز رقمك يوصلك، وسيب بياناتك وهنتواصل معاك.</p><label class="form-label">طريقة اختيار الرقم</label><div class="number-type-grid"><div class="number-type-option" onclick="selectNumberType(this,'من اختياري')"><h5>رقم من اختياري 🎯</h5><p>هقولك الرقم اللي أنا عايزه</p></div><div class="number-type-option selected" onclick="selectNumberType(this,'من اختياركم')"><h5>رقم من اختياركم ✨</h5><p>انتوا ترشحوا لي رقم مناسب</p></div></div></div><form onsubmit="handleNumberSubmit(event)"><div class="form-group" id="num-group-name"><label class="form-label">الاسم بالكامل</label><input type="text" id="numName" class="form-input" placeholder="اكتب اسمك..." required><div class="form-error">يرجى كتابة الاسم</div></div><div class="form-group" id="num-group-gov"><label class="form-label">المحافظة</label><select id="numGov" class="form-select" required><option value="" disabled selected>اختر المحافظة...</option>${govOptions}</select><div class="form-error">يرجى اختيار المحافظة</div></div><button type="submit" class="whatsapp-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>إرسال طلب الرقم عبر WhatsApp</button></form>`;
             modalOverlay.classList.add('active'); document.body.classList.add('modal-open');
         }
         function selectNumberType(el, type) { document.querySelectorAll('.number-type-option').forEach(o=>o.classList.remove('selected')); el.classList.add('selected'); selectedNumberType = type; }
@@ -808,7 +778,7 @@
         function openTeamModal() {
             modalTitle.textContent = "طلب فريق عمل (خطين)";
             const govOptions = governorates.map(g=>`<option value="${g}">${g}</option>`).join('');
-            modalBody.innerHTML = `<div class="team-modal-content"><p>عشان تفعل ميزة المكالمات المجانية بينك وبين صاحبك، هتحتاج تطلب خطين وتسجلهم على نفس الفريق.</p><ul><li>خط ليك وخط لصاحبك أو قريبك</li><li>مكالمات بينكم ببلاش تماماً</li><li>مش بيخصم من وحدات الباقة الأساسية</li></ul></div><form onsubmit="handleTeamSubmit(event)"><div class="form-group" id="team-group-name"><label class="form-label">اسمك بالكامل</label><input type="text" id="teamName" class="form-input" placeholder="اكتب اسمك..." required><div class="form-error">يرجى كتابة الاسم</div></div><div class="form-group" id="team-group-gov"><label class="form-label">المحافظة</label><select id="teamGov" class="form-select" required><option value="" disabled selected>اختر المحافظة...</option>${govOptions}</select><div class="form-error">يرجى اختيار المحافظة</div></div><button type="submit" class="whatsapp-btn svg-green"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>إرسال الطلب عبر WhatsApp</button></form>`;
+            modalBody.innerHTML = `<div class="team-modal-content"><p>عشان تفعل ميزة المكالمات المجانية بينك وبين صاحبك، هتحتاج تطلب خطين وتسجلهم على نفس الفريق.</p><ul><li>خط ليك وخط لصاحبك أو قريبك</li><li>مكالمات بينكم ببلاش تماماً</li><li>مش بيخصم من وحدات الباقة الأساسية</li></ul></div><form onsubmit="handleTeamSubmit(event)"><div class="form-group" id="team-group-name"><label class="form-label">اسمك بالكامل</label><input type="text" id="teamName" class="form-input" placeholder="اكتب اسمك..." required><div class="form-error">يرجى كتابة الاسم</div></div><div class="form-group" id="team-group-gov"><label class="form-label">المحافظة</label><select id="teamGov" class="form-select" required><option value="" disabled selected>اختر المحافظة...</option>${govOptions}</select><div class="form-error">يرجى اختيار المحافظة</div></div><button type="submit" class="whatsapp-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>إرسال الطلب عبر WhatsApp</button></form>`;
             modalOverlay.classList.add('active'); document.body.classList.add('modal-open');
         }
         function handleTeamSubmit(e) {
@@ -840,7 +810,7 @@
             currentSelectedPlan={...plan,typeName}; modalTitle.textContent="طلب اشتراك جديد";
             const saving=plan.company-plan.sell;
             const govOptions=governorates.map(g=>`<option value="${g}">${g}</option>`).join('');
-            modalBody.innerHTML=`<div class="order-summary"><div class="order-row"><span>نوع الباقة:</span><span>${typeName}</span></div><div class="order-row"><span>القيمة:</span><span>${plan.value} ${plan.unit}</span></div><div class="order-row total"><span>سعر البيع:</span><span>${plan.sell} جنيه</span></div><div class="order-row" style="color:#2ecc71;"><span>💰 التوفير:</span><span>${saving} جنيه</span></div></div><form onsubmit="handleOrderSubmit(event)"><div class="form-group" id="group-name"><label class="form-label">الاسم بالكامل</label><input type="text" id="clientName" class="form-input" placeholder="اكتب اسمك هنا..." required><div class="form-error">يرجى كتابة الاسم</div></div><div class="form-group" id="group-gov"><label class="form-label">المحافظة</label><select id="clientGov" class="form-select" required><option value="" disabled selected>اختر المحافظة...</option>${govOptions}</select><div class="form-error">يرجى اختيار المحافظة</div></div><button type="submit" class="whatsapp-btn svg-green"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>إرسال الطلب عبر WhatsApp</button></form>`;
+            modalBody.innerHTML=`<div class="order-summary"><div class="order-row"><span>نوع الباقة:</span><span>${typeName}</span></div><div class="order-row"><span>القيمة:</span><span>${plan.value} ${plan.unit}</span></div><div class="order-row total"><span>سعر البيع:</span><span>${plan.sell} جنيه</span></div><div class="order-row" style="color:#2ecc71;"><span>💰 التوفير:</span><span>${saving} جنيه</span></div></div><form onsubmit="handleOrderSubmit(event)"><div class="form-group" id="group-name"><label class="form-label">الاسم بالكامل</label><input type="text" id="clientName" class="form-input" placeholder="اكتب اسمك هنا..." required><div class="form-error">يرجى كتابة الاسم</div></div><div class="form-group" id="group-gov"><label class="form-label">المحافظة</label><select id="clientGov" class="form-select" required><option value="" disabled selected>اختر المحافظة...</option>${govOptions}</select><div class="form-error">يرجى اختيار المحافظة</div></div><button type="submit" class="whatsapp-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>إرسال الطلب عبر WhatsApp</button></form>`;
             modalOverlay.classList.add('active'); document.body.classList.add('modal-open');
         }
         function handleOrderSubmit(e) {
