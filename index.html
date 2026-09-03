@@ -187,13 +187,13 @@
         /* MODAL SYSTEM */
         .modal-overlay { position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 15px; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out); }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-panel { background: #0f0f13; border: 1px solid var(--border-highlight); border-radius: var(--radius-xl); width: 100%; max-width: 420px; max-height: 90vh; display: flex; flex-direction: column; position: relative; overflow: hidden; transform: scale(0.95) translateY(20px); transition: transform 0.4s var(--ease-out); box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
+        .modal-panel { background: #0f0f13; border: 1px solid var(--border-highlight); border-radius: var(--radius-xl); width: 100%; max-width: 440px; max-height: 90vh; display: flex; flex-direction: column; position: relative; overflow: hidden; transform: scale(0.95) translateY(20px); transition: transform 0.4s var(--ease-out); box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
         .modal-overlay.active .modal-panel { transform: scale(1) translateY(0); }
         .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 25px; flex-shrink: 0; border-bottom: 1px solid var(--border-subtle); background: rgba(255,255,255,0.02); }
         .modal-header h3 { font-size: 1.1rem; font-weight: 800; color: #fff; }
         .modal-close { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); color: rgba(255,255,255,0.6); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; flex-shrink: 0; }
         .modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
-        .modal-body { padding: 30px 25px; overflow-y: auto; flex: 1; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; }
+        .modal-body { padding: 25px; overflow-y: auto; flex: 1; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; }
 
         .form-group { margin-bottom: 18px; position: relative; }
         .form-label { display: block; margin-bottom: 6px; font-size: 0.9rem; color: rgba(255,255,255,0.8); font-weight: 600; }
@@ -225,75 +225,57 @@
         .order-row.total { border-top: 1px solid var(--border-subtle); padding-top: 10px; margin-top: 10px; font-weight: 800; color: #fff; font-size: 1.1rem; }
         .order-row.total span:last-child { color: var(--accent-cyan); }
 
-        /* ⭐ PROFILE CARD (VIEW ONLY - CLEAN DESIGN) */
-        .profile-card { text-align: center; padding: 10px 0; }
+        /* ⭐ PROFILE MODAL STYLES */
+        .profile-modal { text-align: center; }
 
-        .profile-card-avatar {
-            width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 24px;
-            padding: 3px; background: var(--gradient-main); position: relative; cursor: pointer;
-            box-shadow: 0 0 30px rgba(0,229,255,0.25);
-            animation: profileGlow 3s infinite ease-in-out;
+        .profile-avatar-wrapper {
+            position: relative; width: 90px; height: 90px; margin: 0 auto 22px; cursor: pointer;
         }
-        @keyframes profileGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(0,229,255,0.25); }
-            50% { box-shadow: 0 0 45px rgba(176,38,255,0.35); }
-        }
-        .profile-card-avatar-inner {
-            width: 100%; height: 100%; border-radius: 50%; background: #1a1a2e;
-            overflow: hidden; display: flex; align-items: center; justify-content: center;
-        }
-        .profile-card-avatar-inner img { width: 100%; height: 100%; object-fit: cover; display: none; }
-        .profile-card-avatar-inner svg { width: 45px; height: 45px; stroke: rgba(255,255,255,0.25); fill: none; stroke-width: 1.5; }
-        .profile-card-avatar input { display: none; }
-
-        .profile-card-edit-hint {
-            position: absolute; bottom: 0; right: 0; width: 32px; height: 32px;
-            border-radius: 50%; background: var(--accent-purple); border: 3px solid #0f0f13;
+        .profile-avatar-circle {
+            width: 90px; height: 90px; border-radius: 50%; overflow: hidden;
+            border: 2px solid var(--border-highlight); background: rgba(255,255,255,0.03);
             display: flex; align-items: center; justify-content: center;
-            transition: 0.3s; z-index: 2;
+            transition: border-color 0.3s;
         }
-        .profile-card-edit-hint:hover { transform: scale(1.15); background: var(--accent-cyan); }
-        .profile-card-edit-hint svg { width: 14px; height: 14px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+        .profile-avatar-wrapper:hover .profile-avatar-circle { border-color: var(--accent-cyan); }
+        .profile-avatar-circle img { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .profile-avatar-circle svg { width: 36px; height: 36px; stroke: rgba(255,255,255,0.2); fill: none; stroke-width: 1.5; }
+        .profile-avatar-wrapper input[type="file"] { display: none; }
 
-        .profile-card-name {
-            font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 6px;
-            background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        .profile-camera-icon {
+            position: absolute; bottom: 0; right: 0; width: 28px; height: 28px;
+            border-radius: 50%; background: var(--accent-cyan); border: 2px solid #0f0f13;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.3s; pointer-events: none;
         }
-        .profile-card-email {
-            font-size: 0.9rem; color: rgba(255,255,255,0.45); margin-bottom: 28px;
-            display: flex; align-items: center; justify-content: center; gap: 6px;
-        }
-        .profile-card-email svg { width: 14px; height: 14px; stroke: var(--accent-cyan); fill: none; stroke-width: 2; }
+        .profile-avatar-wrapper:hover .profile-camera-icon { opacity: 1; }
+        .profile-camera-icon svg { width: 13px; height: 13px; stroke: #000; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
-        .profile-card-divider {
-            width: 60px; height: 2px; margin: 0 auto 24px;
-            background: linear-gradient(90deg, transparent, var(--border-highlight), transparent);
-            border-radius: 2px;
+        .profile-form { text-align: right; margin-top: 5px; }
+        .profile-form .form-group { margin-bottom: 16px; }
+        .profile-form .form-input {
+            background: rgba(255,255,255,0.04); padding-right: 42px;
         }
+        .profile-input-icon {
+            position: absolute; right: 14px; top: 42px;
+            width: 18px; height: 18px; stroke: rgba(255,255,255,0.3); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+            pointer-events: none; transition: 0.3s;
+        }
+        .profile-form .form-input:focus ~ .profile-input-icon { stroke: var(--accent-cyan); }
 
-        .profile-card-date {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle);
-            border-radius: 14px; padding: 14px 20px; transition: 0.3s;
+        .profile-save-btn {
+            width: 100%; background: var(--gradient-main); border: none; color: #fff;
+            padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.95rem;
+            cursor: pointer; font-family: var(--font); transition: 0.3s; margin-top: 8px;
         }
-        .profile-card-date:hover { border-color: var(--border-highlight); background: rgba(255,255,255,0.05); }
-        .profile-card-date svg { width: 20px; height: 20px; stroke: var(--accent-cyan); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
-        .profile-card-date-info { text-align: right; }
-        .profile-card-date-label { font-size: 0.7rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 2px; }
-        .profile-card-date-value { font-size: 0.95rem; font-weight: 700; color: rgba(255,255,255,0.8); font-variant-numeric: tabular-nums; }
+        .profile-save-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        .profile-card-empty {
-            text-align: center; padding: 20px 0;
+        .profile-joined {
+            margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border-subtle);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            font-size: 0.78rem; color: rgba(255,255,255,0.3);
         }
-        .profile-card-empty svg { width: 50px; height: 50px; stroke: rgba(255,255,255,0.15); fill: none; stroke-width: 1.5; margin-bottom: 15px; }
-        .profile-card-empty p { color: rgba(255,255,255,0.4); font-size: 0.9rem; margin-bottom: 20px; }
-        .profile-card-empty-btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: var(--gradient-main); color: #fff; border: none;
-            padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 0.9rem;
-            cursor: pointer; font-family: var(--font); transition: 0.3s;
-        }
-        .profile-card-empty-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,229,255,0.3); }
+        .profile-joined svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.3); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
         /* FOOTER */
         footer { border-top: 1px solid var(--border-subtle); padding: 40px 0; text-align: center; color: rgba(255,255,255,0.3); font-size: 0.85rem; background: rgba(5,5,7,0.95); }
@@ -323,7 +305,7 @@
             .services-grid, .packages-grid { grid-template-columns: 1fr; width: 100%; }
             .glass-card, .pkg-card { min-width: 0; }
             .modal-panel { max-height: 95vh; border-radius: 20px; }
-            .modal-body { padding: 25px 18px; }
+            .modal-body { padding: 20px 18px; }
             .modal-header { padding: 15px; }
             .pkg-btn, .whatsapp-btn, .tab-btn { min-height: 50px; }
             .hero-content h1 { font-size: 2.8rem; }
@@ -569,14 +551,14 @@
             terms: { title: "شروط الاستخدام", html: `<h4>١. القبول بالشروط</h4><p>باستخدامك لخدماتنا...</p>` },
             contact: { title: "تواصل معنا", html: `<h4>نحن هنا لمساعدتك</h4><p>فريق الدعم متاح على مدار الساعة.</p><ul><li>📞 +201289906121</li><li>💬 +201289906121</li></ul>` }
         };
-        function openModal(key) { const c = MODAL_CONTENT[key]; if(!c) return; modalTitle.textContent = c.title; modalBody.innerHTML = c.html; modalOverlay.classList.add('active'); document.body.classList.add('modal-open'); }
+        function openModalByKey(key) { const c = MODAL_CONTENT[key]; if(!c) return; modalTitle.textContent = c.title; modalBody.innerHTML = c.html; modalOverlay.classList.add('active'); document.body.classList.add('modal-open'); }
         function closeModal() { modalOverlay.classList.remove('active'); document.body.classList.remove('modal-open'); }
-        document.addEventListener('click', (e) => { const t = e.target.closest('[data-modal]'); if(t) openModal(t.dataset.modal); });
+        document.addEventListener('click', (e) => { const t = e.target.closest('[data-modal]'); if(t) openModalByKey(t.dataset.modal); });
         modalClose.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeModal(); });
         document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
 
-        // ===== ⭐ PROFILE MODAL (VIEW ONLY + EDIT AVATAR) =====
+        // ===== ⭐ PROFILE MODAL =====
         function openProfileModal() {
             modalTitle.textContent = "حسابي الشخصي";
             const savedName = localStorage.getItem('ybn_profile_name') || '';
@@ -588,96 +570,44 @@
             const avatarDisplay = savedAvatar ? 'display:block' : 'display:none';
             const iconDisplay = savedAvatar ? 'display:none' : 'display:block';
 
-            // If no profile data exists, show registration prompt
-            if (!savedName && !savedEmail) {
-                modalBody.innerHTML = `
-                    <div class="profile-card-empty">
-                        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        <p>لسه مسجلتش حسابك<br>سجّل دلوقتي عشان تستمتع بكل المميزات</p>
-                        <button class="profile-card-empty-btn" onclick="closeModal(); openRegisterModal();">
-                            <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
-                            إنشاء حساب جديد
-                        </button>
-                    </div>
-                `;
-                modalOverlay.classList.add('active');
-                document.body.classList.add('modal-open');
-                return;
-            }
-
-            // Profile exists - show clean view
-            const dateDisplay = joinDate ? `${joinDate}${joinTime ? ' · ' + joinTime : ''}` : 'غير محدد';
+            const dateStr = joinDate ? `${joinDate}${joinTime ? ' - ' + joinTime : ''}` : '';
 
             modalBody.innerHTML = `
-                <div class="profile-card">
-                    <label class="profile-card-avatar" for="profileAvatarInput">
+                <div class="profile-modal">
+                    <label class="profile-avatar-wrapper" for="profileAvatarInput">
                         <input type="file" id="profileAvatarInput" accept="image/*" onchange="handleProfileAvatarChange(this)">
-                        <div class="profile-card-avatar-inner">
+                        <div class="profile-avatar-circle">
                             <svg style="${iconDisplay}" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                             <img id="profileCardImg" src="${savedAvatar}" style="${avatarDisplay}" alt="">
                         </div>
-                        <div class="profile-card-edit-hint">
+                        <div class="profile-camera-icon">
                             <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
                         </div>
                     </label>
 
-                    <div class="profile-card-name">${savedName}</div>
-                    
-                    <div class="profile-card-email">
-                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        ${savedEmail}
-                    </div>
-
-                    <div class="profile-card-divider"></div>
-
-                    <div class="profile-card-date">
-                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                        <div class="profile-card-date-info">
-                            <span class="profile-card-date-label">تاريخ التسجيل</span>
-                            <span class="profile-card-date-value">${dateDisplay}</span>
+                    <form class="profile-form" onsubmit="handleProfileSave(event)">
+                        <div class="form-group">
+                            <label class="form-label">الاسم</label>
+                            <input type="text" id="profileName" class="form-input" value="${savedName}" placeholder="اكتب اسمك..." required>
+                            <svg class="profile-input-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label class="form-label">البريد الإلكتروني</label>
+                            <input type="email" id="profileEmail" class="form-input" value="${savedEmail}" placeholder="example@mail.com" required>
+                            <svg class="profile-input-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <button type="submit" class="profile-save-btn">حفظ البيانات</button>
+                    </form>
+
+                    ${dateStr ? `
+                    <div class="profile-joined">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <span>عضو منذ ${dateStr}</span>
+                    </div>` : ''}
                 </div>
             `;
             modalOverlay.classList.add('active');
             document.body.classList.add('modal-open');
-        }
-
-        // Registration Modal (first time only)
-        function openRegisterModal() {
-            modalTitle.textContent = "إنشاء حساب جديد";
-            modalBody.innerHTML = `
-                <form onsubmit="handleRegister(event)">
-                    <div class="form-group">
-                        <label class="form-label">الاسم</label>
-                        <input type="text" id="regName" class="form-input" placeholder="اكتب اسمك..." required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">الإيميل</label>
-                        <input type="email" id="regEmail" class="form-input" placeholder="example@mail.com" required>
-                    </div>
-                    <button type="submit" class="whatsapp-btn" style="background:var(--gradient-main);">إنشاء الحساب</button>
-                </form>
-            `;
-            modalOverlay.classList.add('active');
-            document.body.classList.add('modal-open');
-        }
-
-        function handleRegister(e) {
-            e.preventDefault();
-            const name = document.getElementById('regName').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
-            if (!name || !email) { showToast('يرجى ملء جميع الحقول', 'error'); return; }
-
-            const now = new Date();
-            localStorage.setItem('ybn_profile_name', name);
-            localStorage.setItem('ybn_profile_email', email);
-            localStorage.setItem('ybn_join_date', now.toLocaleDateString('ar-EG'));
-            localStorage.setItem('ybn_join_time', now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }));
-
-            updateTopBar(name);
-            closeModal();
-            showToast('تم إنشاء حسابك بنجاح ✓', 'success');
         }
 
         function handleProfileAvatarChange(input) {
@@ -687,15 +617,33 @@
                     const newAvatar = e.target.result;
                     localStorage.setItem('ybn_avatar', newAvatar);
                     updateAllAvatars(newAvatar);
-                    // Update modal preview instantly
                     const img = document.getElementById('profileCardImg');
                     if (img) { img.src = newAvatar; img.style.display = 'block'; }
-                    const svg = document.querySelector('.profile-card-avatar-inner svg');
+                    const svg = document.querySelector('.profile-avatar-circle svg');
                     if (svg) svg.style.display = 'none';
                     showToast('تم تحديث الصورة ✓', 'success');
                 };
                 reader.readAsDataURL(input.files[0]);
             }
+        }
+
+        function handleProfileSave(e) {
+            e.preventDefault();
+            const name = document.getElementById('profileName').value.trim();
+            const email = document.getElementById('profileEmail').value.trim();
+            if (!name || !email) { showToast('يرجى ملء جميع الحقول', 'error'); return; }
+
+            if (!localStorage.getItem('ybn_join_date')) {
+                const now = new Date();
+                localStorage.setItem('ybn_join_date', now.toLocaleDateString('ar-EG'));
+                localStorage.setItem('ybn_join_time', now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }));
+            }
+
+            localStorage.setItem('ybn_profile_name', name);
+            localStorage.setItem('ybn_profile_email', email);
+            updateTopBar(name);
+            closeModal();
+            showToast('تم حفظ بياناتك بنجاح ✓', 'success');
         }
 
         function updateTopBar(name) {
