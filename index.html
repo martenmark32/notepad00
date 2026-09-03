@@ -67,24 +67,8 @@
         .section-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); }
         .section-title { font-size: clamp(1.8rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.2; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; word-wrap: break-word; }
 
-        /* ⭐ FIXED TOP INFO BAR - Centered & Clean */
-        .top-info-bar { 
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1001; 
-            background: rgba(5,5,7,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); 
-            border-bottom: 1px solid var(--border-subtle); 
-            padding: 8px 20px; 
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.8rem; color: rgba(255,255,255,0.5);
-        }
-        .visitor-counter { display: flex; align-items: center; gap: 8px; }
-        .visitor-dot { width: 6px; height: 6px; border-radius: 50%; background: #2ecc71; box-shadow: 0 0 6px #2ecc71; animation: blink 2s infinite; flex-shrink: 0; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        .visitor-counter svg { width: 15px; height: 15px; stroke: var(--accent-cyan); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
-        .visitor-counter .label { color: rgba(255,255,255,0.4); }
-        .visitor-counter .count { font-weight: 800; color: var(--accent-cyan); font-variant-numeric: tabular-nums; }
-
         /* NAVBAR */
-        header { position: fixed; top: 37px; left: 0; right: 0; z-index: 1000; padding: 15px 0; transition: all 0.4s var(--ease-out); width: 100%; }
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 15px 0; transition: all 0.4s var(--ease-out); width: 100%; }
         header.scrolled { padding: 10px 0; background: rgba(5,5,7,0.92); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-subtle); }
         nav { display: flex; justify-content: space-between; align-items: center; }
         .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
@@ -105,7 +89,7 @@
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-6px); }
 
         /* HERO */
-        .hero { min-height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 0 60px; position: relative; overflow: hidden; }
+        .hero { min-height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 0 60px; position: relative; overflow: hidden; }
         .hero::before, .hero::after { content: ''; position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; pointer-events: none; }
         .hero::before { width: 250px; height: 250px; background: var(--accent-purple); top: 10%; right: -50px; animation: orbFloat 20s infinite alternate ease-in-out; }
         .hero::after { width: 200px; height: 200px; background: var(--accent-cyan); bottom: 10%; left: -50px; animation: orbFloat 25s infinite alternate-reverse ease-in-out; }
@@ -234,6 +218,16 @@
         .order-row.total { border-top: 1px solid var(--border-subtle); padding-top: 10px; margin-top: 10px; font-weight: 800; color: #fff; font-size: 1.1rem; }
         .order-row.total span:last-child { color: var(--accent-cyan); }
 
+        /* ⭐ ID CARD NOTICE */
+        .id-card-notice {
+            display: flex; align-items: flex-start; gap: 12px;
+            background: rgba(255, 165, 0, 0.08); border: 1px solid rgba(255, 165, 0, 0.25);
+            border-radius: 12px; padding: 14px 16px; margin-bottom: 20px;
+        }
+        .id-card-notice svg { width: 22px; height: 22px; stroke: #ffa500; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 1px; }
+        .id-card-notice-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
+        .id-card-notice-text strong { color: #ffa500; font-weight: 700; }
+
         /* DEVELOPER MODAL */
         .dev-modal { text-align: center; padding: 10px 0; }
         .dev-instagram-logo { width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 22px; padding: 3px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); animation: igPulse 3s infinite ease-in-out; }
@@ -270,7 +264,6 @@
         .fade-up.visible { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 768px) {
-            .top-info-bar { padding: 7px 15px; font-size: 0.75rem; }
             .nav-links { position: fixed; inset: 0; width: 100%; height: 100vh; background: rgba(5,5,7,0.98); flex-direction: column; justify-content: center; align-items: center; gap: 30px; opacity: 0; pointer-events: none; transition: 0.4s var(--ease-out); z-index: 999; }
             .nav-links.active { opacity: 1; pointer-events: all; }
             .nav-links a { font-size: 1.5rem; }
@@ -279,7 +272,6 @@
             .services-grid, .packages-grid { grid-template-columns: 1fr; width: 100%; }
             .glass-card, .pkg-card { min-width: 0; }
             .glass-card { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(20, 20, 25, 0.85); }
-            .top-info-bar { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(5,5,7,0.98); }
             header.scrolled { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(5,5,7,0.98); }
             .modal-overlay { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(0,0,0,0.9); }
             .toast { backdrop-filter: none; -webkit-backdrop-filter: none; }
@@ -300,6 +292,8 @@
             .footer-disclaimer { padding: 14px 15px; font-size: 0.68rem; }
             .hero::before { width: 150px; height: 150px; }
             .hero::after { width: 120px; height: 120px; }
+            .id-card-notice { padding: 12px 14px; }
+            .id-card-notice-text { font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -310,16 +304,6 @@
         <div class="loader-logo"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
         <div class="loader-bar-container"><div class="loader-bar"></div></div>
         <div class="loader-text">جاري التحميل...</div>
-    </div>
-
-    <!-- ⭐ FIXED TOP INFO BAR -->
-    <div class="top-info-bar">
-        <div class="visitor-counter">
-            <div class="visitor-dot"></div>
-            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span class="label">عدد الزوار:</span>
-            <span class="count" id="visitorCount">0</span>
-        </div>
     </div>
 
     <canvas id="networkCanvas"></canvas>
@@ -479,17 +463,6 @@
         // ===== PRELOADER =====
         window.addEventListener('load', () => { setTimeout(() => { document.getElementById('preloader').classList.add('hidden'); }, 1500); });
 
-        // ===== VISITOR COUNTER =====
-        function initVisitorCounter() {
-            const KEY = 'ybn_real_visitor_count';
-            let count = parseInt(localStorage.getItem(KEY));
-            if (isNaN(count)) count = 0;
-            count += 1;
-            localStorage.setItem(KEY, count);
-            const el = document.getElementById('visitorCount');
-            if (el) el.textContent = count.toLocaleString('ar-EG');
-        }
-
         // ===== CONFIG =====
         const CONFIG = { WHATSAPP_NUMBER: "201289906121" };
         const FALLBACK_SERVICES = [
@@ -564,11 +537,32 @@
             modalOverlay.classList.add('active'); document.body.classList.add('modal-open');
         }
 
-        // ===== NUMBER MODAL =====
+        // ===== ⭐ NUMBER MODAL WITH ID CARD NOTICE =====
         function openNumberModal() {
             modalTitle.textContent = "طلب رقم جديد"; selectedNumberType = 'من اختياركم';
             const govOptions = governorates.map(g => `<option value="${g}">${g}</option>`).join('');
-            modalBody.innerHTML = `<div class="number-modal-content"><p>اختار إزاي عايز رقمك يوصلك.</p><label class="form-label">طريقة اختيار الرقم</label><div class="number-type-grid"><div class="number-type-option" onclick="selectNumberType(this,'من اختياري')"><h5>رقم من اختياري 🎯</h5><p>هقولك الرقم اللي أنا عايزه</p></div><div class="number-type-option selected" onclick="selectNumberType(this,'من اختياركم')"><h5>رقم من اختياركم ✨</h5><p>انتوا ترشحوا لي رقم مناسب</p></div></div></div><form onsubmit="handleNumberSubmit(event)"><div class="form-group" id="num-group-name"><label class="form-label">الاسم بالكامل</label><input type="text" id="numName" class="form-input" placeholder="اكتب اسمك..." required><div class="form-error">يرجى كتابة الاسم</div></div><div class="form-group" id="num-group-gov"><label class="form-label">المحافظة</label><select id="numGov" class="form-select" required><option value="" disabled selected>اختر المحافظة...</option>${govOptions}</select><div class="form-error">يرجى اختيار المحافظة</div></div><button type="submit" class="whatsapp-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>إرسال طلب الرقم عبر WhatsApp</button></form>`;
+            modalBody.innerHTML = `
+                <div class="number-modal-content">
+                    <p>اختار إزاي عايز رقمك يوصلك، وسيب بياناتك وهنتواصل معاك.</p>
+                    
+                    <div class="id-card-notice">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                        <div class="id-card-notice-text">
+                            <strong>تنبيه مهم:</strong> عشان نقدر نفعل الخط، هتحتاج تبعت <strong>صورة بطاقة الرقم القومي</strong> على الواتساب بعد ما تسيب بياناتك. بدونه مش هنقدر نكمل التفعيل.
+                        </div>
+                    </div>
+
+                    <label class="form-label">طريقة اختيار الرقم</label>
+                    <div class="number-type-grid">
+                        <div class="number-type-option" onclick="selectNumberType(this,'من اختياري')"><h5>رقم من اختياري 🎯</h5><p>هقولك الرقم اللي أنا عايزه</p></div>
+                        <div class="number-type-option selected" onclick="selectNumberType(this,'من اختياركم')"><h5>رقم من اختياركم ✨</h5><p>انتوا ترشحوا لي رقم مناسب</p></div>
+                    </div>
+                </div>
+                <form onsubmit="handleNumberSubmit(event)">
+                    <div class="form-group" id="num-group-name"><label class="form-label">الاسم بالكامل</label><input type="text" id="numName" class="form-input" placeholder="اكتب اسمك..." required><div class="form-error">يرجى كتابة الاسم</div></div>
+                    <div class="form-group" id="num-group-gov"><label class="form-label">المحافظة</label><select id="numGov" class="form-select" required><option value="" disabled selected>اختر المحافظة...</option>${govOptions}</select><div class="form-error">يرجى اختيار المحافظة</div></div>
+                    <button type="submit" class="whatsapp-btn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>إرسال طلب الرقم عبر WhatsApp</button>
+                </form>`;
             modalOverlay.classList.add('active'); document.body.classList.add('modal-open');
         }
         function selectNumberType(el, type) { document.querySelectorAll('.number-type-option').forEach(o=>o.classList.remove('selected')); el.classList.add('selected'); selectedNumberType = type; }
@@ -578,7 +572,7 @@
             if(!gov.value){document.getElementById('num-group-gov').classList.add('error');v=false;}else{document.getElementById('num-group-gov').classList.remove('error');}
             if(!v) return;
             const oid='NUM-'+Math.floor(100000+Math.random()*900000); localStorage.setItem('ybn_order_'+oid, Date.now());
-            window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد طلب رقم جديد.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nطريقة الاختيار: ${selectedNumberType}\nرقم الطلب: ${oid}`)}`,'_blank');
+            window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد طلب رقم جديد.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nطريقة الاختيار: ${selectedNumberType}\nرقم الطلب: ${oid}\n\n⚠️ ملحوظة: هتبعت صورة بطاقة الرقم القومي هنا عشان نكمل التفعيل.`)}`,'_blank');
             closeModal(); showToast('تم تحويلك إلى WhatsApp','success');
         }
 
@@ -595,7 +589,7 @@
             if(!gov.value){document.getElementById('team-group-gov').classList.add('error');v=false;}else{document.getElementById('team-group-gov').classList.remove('error');}
             if(!v) return;
             const oid='TEAM-'+Math.floor(100000+Math.random()*900000); localStorage.setItem('ybn_order_'+oid, Date.now());
-            window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد الاشتراك في عرض فريق العمل.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nرقم الطلب: ${oid}`)}`,'_blank');
+            window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد الاشتراك في عرض فريق العمل.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nرقم الطلب: ${oid}\n\n⚠️ ملحوظة: هتبعت صورة بطاقة الرقم القومي هنا عشان نكمل التفعيل.`)}`,'_blank');
             closeModal(); showToast('تم تحويلك إلى WhatsApp','success');
         }
 
@@ -620,7 +614,7 @@
             if(!gov.value){document.getElementById('group-gov').classList.add('error');v=false;}else{document.getElementById('group-gov').classList.remove('error');}
             if(!v) return;
             const oid='ORDER-'+Math.floor(100000+Math.random()*900000); localStorage.setItem('ybn_order_'+oid, Date.now()); const now=new Date();
-            window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد الاشتراك في باقة.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nنوع الباقة: ${currentSelectedPlan.typeName}\nالباقة: ${currentSelectedPlan.value} ${currentSelectedPlan.unit}\nسعر البيع: ${currentSelectedPlan.sell} جنيه\nالتوفير: ${currentSelectedPlan.company-currentSelectedPlan.sell} جنيه\nرقم الطلب: ${oid}\nالتاريخ: ${now.toLocaleDateString('ar-EG')} ${now.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}`)}`,'_blank');
+            window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد الاشتراك في باقة.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nنوع الباقة: ${currentSelectedPlan.typeName}\nالباقة: ${currentSelectedPlan.value} ${currentSelectedPlan.unit}\nسعر البيع: ${currentSelectedPlan.sell} جنيه\nالتوفير: ${currentSelectedPlan.company-currentSelectedPlan.sell} جنيه\nرقم الطلب: ${oid}\nالتاريخ: ${now.toLocaleDateString('ar-EG')} ${now.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}\n\n⚠️ ملحوظة: هتبعت صورة بطاقة الرقم القومي هنا عشان نكمل التفعيل.`)}`,'_blank');
             closeModal(); showToast('تم تحويلك إلى WhatsApp','success');
         }
 
@@ -713,7 +707,7 @@
         // ===== INIT =====
         document.addEventListener('DOMContentLoaded', () => {
             resizeCanvas(); animateCanvas(); loadServices(); observeFadeUp();
-            renderPackages(unitsPlans, 'وحدات'); initVisitorCounter();
+            renderPackages(unitsPlans, 'وحدات');
         });
     </script>
 </body>
