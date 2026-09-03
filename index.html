@@ -1,494 +1,1065 @@
-﻿<!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المحرر الاحترافي المتقدم +</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>YOUR_BRAND_NAME | عروض وخدمات اتصالات</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
+        /* =========================================
+           1. PREMIUM VARIABLES & RESET
+           ========================================= */
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --success-color: #2ecc71;
-            --warning-color: #f1c40f;
-            --bg-color: #f5f6fa;
-            --text-color: #2c3e50;
-            --border-radius: 12px;
-            --transition: all 0.3s ease;
+            --bg-deep: #050507;
+            --surface-glass: rgba(20, 20, 25, 0.6);
+            --surface-glass-hover: rgba(30, 30, 40, 0.8);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(255, 255, 255, 0.2);
+            --accent-cyan: #00e5ff;
+            --accent-purple: #b026ff;
+            --accent-pink: #ff2d7b;
+            --gradient-main: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            --gradient-text: linear-gradient(135deg, #fff 0%, #a5c9ff 50%, var(--accent-purple) 100%);
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --container: 1200px;
+            --font: 'Cairo', sans-serif;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        html { scroll-behavior: smooth; }
+        
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 1rem;
-            transition: var(--transition);
+            background-color: var(--bg-deep);
+            color: #fff; font-family: var(--font);
+            overflow-x: hidden; line-height: 1.7; position: relative;
+        }
+        body.modal-open { overflow: hidden; }
+
+        /* Noise Overlay - خفيف جداً للأداء */
+        body::before {
+            content: ''; position: fixed; inset: 0; z-index: 9998;
+            pointer-events: none; opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
+        canvas#networkCanvas { position: fixed; inset: 0; z-index: -1; opacity: 0.3; pointer-events: none; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
-        /* Floating Action Button */
-        .fab {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--secondary-color);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: var(--transition);
-            z-index: 1000;
-        }
+        /* =========================================
+           2. COMPONENTS
+           ========================================= */
+        .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
 
-        .fab:hover {
-            transform: scale(1.1);
-        }
-
-        .fab-menu {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 999;
-        }
-
-        .fab-menu.active {
-            display: flex;
-        }
-
-        .fab-item {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: white;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: var(--transition);
-        }
-
-        .fab-item:hover {
-            transform: scale(1.1);
-            background: var(--secondary-color);
-            color: white;
-        }
-
-        /* Toolbar Improvements */
-        .toolbar {
-            background: linear-gradient(145deg, #ffffff, #f5f5f5);
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 10px;
-            z-index: 100;
-            margin-bottom: 1rem;
-        }
-
-        .toolbar-group {
-            display: inline-flex;
-            gap: 5px;
-            padding: 5px 10px;
-            border-right: 2px solid #eee;
-            align-items: center;
-        }
-
+        .btn-wrap { display: inline-block; position: relative; }
         .btn {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: white;
-            color: var(--text-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            padding: 16px 36px; border-radius: 50px;
+            font-weight: 700; font-size: 1rem; cursor: pointer;
+            background: var(--gradient-main); color: white;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 0 20px rgba(0,229,255,0.15);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            position: relative; overflow: hidden; z-index: 1;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(176,38,255,0.3); }
+
+        .glass-card {
+            background: var(--surface-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl); padding: 30px;
+            position: relative; transition: all 0.4s var(--ease-out); overflow: hidden;
+        }
+        .glass-card:hover {
+            background: var(--surface-glass-hover); border-color: var(--border-highlight);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px -10px rgba(0,0,0,0.5);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            background: var(--secondary-color);
-            color: white;
+        .section-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 16px; border-radius: 50px;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle);
+            font-size: 0.8rem; font-weight: 600; color: var(--accent-cyan);
+            margin-bottom: 20px; letter-spacing: 0.5px;
+        }
+        .section-badge::before {
+            content: ''; width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan);
         }
 
-        /* Editor Improvements */
-        .editor-container {
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.2;
+            background: var(--gradient-text);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px;
+        }
+
+        /* =========================================
+           3. NAVBAR
+           ========================================= */
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; transition: all 0.5s var(--ease-out); }
+        header.scrolled { padding: 12px 0; background: rgba(5,5,7,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; }
+        .logo span { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.6); transition: color 0.3s; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; }
+        .nav-links a.active::after {
+            content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+            width: 4px; height: 4px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan);
+        }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; padding: 8px; }
+        .hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: 0.4s var(--ease-out); }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-6px); }
+
+        /* =========================================
+           4. HERO (MODIFIED - NO BUTTON)
+           ========================================= */
+        .hero { min-height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 0 60px; position: relative; }
+        .hero::before, .hero::after { content: ''; position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.12; pointer-events: none; }
+        .hero::before { width: 500px; height: 500px; background: var(--accent-purple); top: 10%; right: -10%; animation: orbFloat 15s infinite alternate ease-in-out; }
+        .hero::after { width: 400px; height: 400px; background: var(--accent-cyan); bottom: 10%; left: -5%; animation: orbFloat 18s infinite alternate-reverse ease-in-out; }
+        @keyframes orbFloat { 0%{transform:translate(0,0)} 100%{transform:translate(40px,-30px)} }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; }
+        .hero-content h1 { font-size: clamp(3rem,7vw,5.5rem); font-weight: 900; line-height: 1.05; margin-bottom: 28px; letter-spacing: -2px; }
+        .hero-content h1 .gradient-word { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-content p { font-size: clamp(1.05rem,2vw,1.3rem); color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto; font-weight: 300; }
+
+        /* =========================================
+           5. SERVICES
+           ========================================= */
+        .services { padding: 100px 0; }
+        .services-header { text-align: center; margin-bottom: 50px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 20px; }
+        .service-icon {
+            width: 50px; height: 50px; margin-bottom: 20px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-subtle); color: var(--accent-cyan);
+            transition: 0.4s var(--ease-out);
+        }
+        .glass-card:hover .service-icon { background: var(--gradient-main); color: #fff; border-color: transparent; }
+        .service-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+        .service-card p { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+
+        /* Skeleton */
+        .skeleton-card { background: var(--surface-glass); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 30px; min-height: 200px; }
+        .skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%); background-size: 200% 100%; animation: shimmer 1.8s infinite; border-radius: 8px; }
+        .sk-icon { width: 50px; height: 50px; border-radius: 14px; margin-bottom: 20px; }
+        .sk-title { width: 55%; height: 24px; margin-bottom: 14px; }
+        .sk-text { width: 100%; height: 12px; margin-bottom: 8px; }
+        .sk-text.short { width: 70%; }
+        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+        /* =========================================
+           6. PACKAGES SECTION (PROFESSIONAL REDESIGN)
+           ========================================= */
+        .packages-section { padding: 80px 0 120px; position: relative; }
+        .packages-tabs {
+            display: flex; justify-content: center; gap: 15px; margin-bottom: 40px;
+        }
+        .tab-btn {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle);
+            color: rgba(255,255,255,0.6); padding: 10px 28px; border-radius: 50px;
+            cursor: pointer; font-family: var(--font); font-weight: 600; font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background: rgba(0,229,255,0.1); border-color: var(--accent-cyan);
+            color: var(--accent-cyan); box-shadow: 0 0 15px rgba(0,229,255,0.1);
+        }
+        
+        .packages-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px; position: relative; min-height: 400px;
+        }
+        
+        /* Package Card Specifics */
+        .pkg-card {
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            padding: 0; height: 100%; border: 1px solid rgba(255,255,255,0.05);
+            background: linear-gradient(180deg, rgba(20,20,25,0.7) 0%, rgba(10,10,12,0.9) 100%);
+        }
+        
+        .pkg-header {
+            width: 100%; padding: 25px 20px;
+            background: radial-gradient(circle at top, rgba(255,255,255,0.03), transparent);
+            border-bottom: 1px solid var(--border-subtle);
             position: relative;
-            margin: 1rem 0;
         }
 
-        #editor {
-            min-height: 600px;
-            padding: 2rem;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            line-height: 1.8;
-            font-size: 16px;
+        .pkg-badge {
+            position: absolute; top: 12px; left: 12px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000; font-size: 0.7rem; font-weight: 800;
+            padding: 4px 10px; border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
+            z-index: 2;
         }
 
-        #editor:focus {
-            outline: none;
-            box-shadow: 0 4px 20px rgba(52, 152, 219, 0.2);
+        .pkg-type { font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .pkg-value { font-size: 2.4rem; font-weight: 900; color: #fff; line-height: 1; }
+        .pkg-value span { font-size: 1rem; font-weight: 400; color: rgba(255,255,255,0.5); margin-right: 5px; }
+        
+        .pkg-body { padding: 25px 20px; flex: 1; display: flex; flex-direction: column; width: 100%; }
+        
+        .pkg-pricing {
+            margin-bottom: 25px;
+        }
+        .pkg-old-price {
+            font-size: 0.9rem; color: rgba(255,255,255,0.4); text-decoration: line-through;
+            margin-bottom: 8px; display: block;
+        }
+        .pkg-new-price {
+            font-size: 2.2rem; font-weight: 800; 
+            background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+        .pkg-new-price small { font-size: 1rem; font-weight: 600; }
+        
+        .pkg-save {
+            display: inline-block; 
+            background: rgba(46, 204, 113, 0.1); color: #2ecc71;
+            padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;
+            border: 1px solid rgba(46, 204, 113, 0.2);
+        }
+        
+        .pkg-btn {
+            width: 100%; margin-top: auto; padding: 14px;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle);
+            color: #fff; border-radius: 12px;
+            font-weight: 700; cursor: pointer; transition: 0.3s;
+            font-family: var(--font);
+        }
+        .pkg-btn:hover {
+            background: var(--gradient-main); border-color: transparent;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        /* Word Count Badge */
-        .word-count-badge {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(44, 62, 80, 0.9);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        /* =========================================
+           7. APP SECTION (CLEANED)
+           ========================================= */
+        .app-section { padding: 80px 0 120px; }
+        .app-container {
+            background: linear-gradient(160deg, rgba(255,255,255,0.02), rgba(176,38,255,0.03));
+            border: 1px solid var(--border-subtle); border-radius: var(--radius-xl);
+            padding: 60px 40px; text-align: center; position: relative; overflow: hidden;
+        }
+        .app-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+        .app-content h2 { font-size: clamp(2rem,4vw,3rem); font-weight: 900; margin-bottom: 20px; letter-spacing: -1px; }
+        .app-content p { color: rgba(255,255,255,0.5); font-size: 1.1rem; margin-bottom: 0; }
+
+        /* =========================================
+           8. MODAL SYSTEM ⭐ PROFESSIONAL UPDATE
+           ========================================= */
+        .modal-overlay {
+            position: fixed; inset: 0; z-index: 10000;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+            opacity: 0; visibility: hidden;
+            transition: all 0.3s var(--ease-out);
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+
+        .modal-panel {
+            background: #0f0f13;
+            border: 1px solid var(--border-highlight);
+            border-radius: var(--radius-xl);
+            width: 100%; max-width: 650px; max-height: 90vh;
+            display: flex; flex-direction: column;
+            position: relative; overflow: hidden;
+            transform: scale(0.95) translateY(20px);
+            transition: transform 0.4s var(--ease-out);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+        }
+        .modal-overlay.active .modal-panel { transform: scale(1) translateY(0); }
+
+        .modal-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 24px 30px; flex-shrink: 0;
+            border-bottom: 1px solid var(--border-subtle);
+            background: rgba(255,255,255,0.02);
+        }
+        .modal-header h3 {
+            font-size: 1.3rem; font-weight: 800; color: #fff;
+        }
+        .modal-close {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle);
+            color: rgba(255,255,255,0.6); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease; flex-shrink: 0;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+        .modal-body {
+            padding: 30px; overflow-y: auto; flex: 1;
+            scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent;
         }
 
-        /* Status Bar */
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background: white;
-            border-radius: var(--border-radius);
-            margin-top: 1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        /* Order Form Styles */
+        .order-summary {
+            background: rgba(255,255,255,0.02); border-radius: 16px; padding: 20px;
+            margin-bottom: 30px; border: 1px dashed var(--border-subtle);
+            position: relative;
         }
-
-        /* Notifications */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            border-radius: var(--border-radius);
-            background: var(--success-color);
-            color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transform: translateX(120%);
-            transition: transform 0.3s ease;
-            z-index: 1000;
+        .order-summary::before {
+            content: 'ملخص العرض'; position: absolute; top: -10px; right: 20px;
+            background: #0f0f13; padding: 0 10px; font-size: 0.8rem; color: var(--accent-cyan); font-weight: 700;
         }
-
-        .notification.show {
-            transform: translateX(0);
+        .order-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.95rem; color: rgba(255,255,255,0.7); }
+        .order-row.total { border-top: 1px solid var(--border-subtle); padding-top: 12px; margin-top: 12px; font-weight: 800; color: #fff; font-size: 1.2rem; }
+        .order-row.total span:last-child { color: var(--accent-cyan); }
+        
+        .form-group { margin-bottom: 20px; position: relative; }
+        .form-label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: rgba(255,255,255,0.8); font-weight: 600; }
+        .form-input, .form-select {
+            width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle);
+            border-radius: 12px; padding: 14px 16px; color: #fff; font-family: var(--font);
+            font-size: 1rem; transition: 0.3s; appearance: none;
         }
-
-        /* Dark Mode */
-        .dark-mode {
-            --bg-color: #1a1a1a;
-            --text-color: #ffffff;
+        .form-input:focus, .form-select:focus {
+            border-color: var(--accent-cyan); background: rgba(0,0,0,0.5);
+            box-shadow: 0 0 0 4px rgba(0,229,255,0.05);
         }
-
-        .dark-mode #editor,
-        .dark-mode .toolbar,
-        .dark-mode .status-bar {
-            background: #2d2d2d;
-            color: #ffffff;
+        .form-error {
+            color: var(--accent-pink); font-size: 0.8rem; margin-top: 6px;
+            display: none; animation: fadeIn 0.3s;
         }
+        .form-group.error .form-input, .form-group.error .form-select { border-color: var(--accent-pink); }
+        .form-group.error .form-error { display: block; }
 
-        .dark-mode .btn {
-            background: #3d3d3d;
-            color: #ffffff;
+        .whatsapp-btn {
+            width: 100%; background: #25D366; border: none; color: #fff;
+            padding: 16px; border-radius: 12px; font-weight: 700; font-size: 1rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: 0.3s; margin-top: 10px; font-family: var(--font);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.15);
         }
+        .whatsapp-btn:hover { background: #20bd5a; transform: translateY(-2px); }
 
-        /* Responsive Design */
+        /* =========================================
+           9. FOOTER
+           ========================================= */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 40px 0; text-align: center;
+            color: rgba(255,255,255,0.3); font-size: 0.85rem;
+            background: rgba(5,5,7,0.95);
+        }
+        .footer-links {
+            display: flex; justify-content: center; gap: 25px;
+            margin-bottom: 20px; flex-wrap: wrap;
+        }
+        .footer-link {
+            color: rgba(255,255,255,0.4); font-size: 0.85rem; font-weight: 600;
+            cursor: pointer; transition: color 0.3s;
+        }
+        .footer-link:hover { color: var(--accent-cyan); }
+
+        /* =========================================
+           10. TOAST & ANIMATIONS
+           ========================================= */
+        .toast-container {
+            position: fixed; bottom: 30px; left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            z-index: 10001; transition: transform 0.6s var(--ease-out);
+        }
+        .toast-container.show { transform: translateX(-50%) translateY(0); }
+        .toast {
+            background: rgba(10,10,15,0.95); backdrop-filter: blur(20px);
+            border: 1px solid var(--border-subtle); border-radius: 60px;
+            padding: 14px 30px; display: flex; align-items: center; gap: 12px;
+            font-size: 0.85rem; font-weight: 600; white-space: nowrap;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+        }
+        .toast-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .toast.success .toast-dot { background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan); }
+        .toast.error .toast-dot { background: var(--accent-pink); box-shadow: 0 0 10px var(--accent-pink); }
+
+        .fade-up { opacity: 0; transform: translateY(40px); transition: all 0.8s var(--ease-out); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
         @media (max-width: 768px) {
-            .toolbar-group {
-                border: none;
-                padding: 5px;
+            .nav-links {
+                position: fixed; inset: 0; width: 100%; height: 100vh;
+                background: rgba(5,5,7,0.98); backdrop-filter: blur(30px);
+                flex-direction: column; justify-content: center; align-items: center; gap: 30px;
+                opacity: 0; pointer-events: none; transition: 0.5s var(--ease-out);
             }
-
-            .btn {
-                padding: 6px 12px;
-            }
-
-            #editor {
-                padding: 1rem;
-            }
-
-            .word-count-badge {
-                bottom: 10px;
-                right: 10px;
-            }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--secondary-color);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-color);
+            .nav-links.active { opacity: 1; pointer-events: all; }
+            .hamburger { display: flex; z-index: 1001; }
+            .hero-content h1 { letter-spacing: -1px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .app-container { padding: 40px 20px; }
+            .modal-header { padding: 20px; }
+            .modal-body { padding: 20px; }
+            .packages-tabs { flex-direction: column; align-items: center; gap: 10px; }
+            .tab-btn { width: 100%; max-width: 300px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1><i class="fas fa-edit"></i> المحرر الاحترافي المتقدم +</h1>
-            <div class="header-actions">
-                <button class="btn" onclick="toggleDarkMode()">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-        </header>
 
-        <!-- Toolbar -->
-        <div class="toolbar">
-            <!-- تنسيق النص -->
-            <div class="toolbar-group">
-                <button class="btn" onclick="execCommand('bold')" title="غامق">
-                    <i class="fas fa-bold"></i>
-                </button>
-                <button class="btn" onclick="execCommand('italic')" title="مائل">
-                    <i class="fas fa-italic"></i>
-                </button>
-                <button class="btn" onclick="execCommand('underline')" title="تحته خط">
-                    <i class="fas fa-underline"></i>
-                </button>
-                <button class="btn" onclick="execCommand('strikethrough')" title="يتوسطه خط">
-                    <i class="fas fa-strikethrough"></i>
-                </button>
-            </div>
+    <canvas id="networkCanvas"></canvas>
 
-            <!-- محاذاة -->
-            <div class="toolbar-group">
-                <button class="btn" onclick="execCommand('justifyRight')" title="محاذاة لليمين">
-                    <i class="fas fa-align-right"></i>
-                </button>
-                <button class="btn" onclick="execCommand('justifyCenter')" title="توسيط">
-                    <i class="fas fa-align-center"></i>
-                </button>
-                <button class="btn" onclick="execCommand('justifyLeft')" title="محاذاة لليسار">
-                    <i class="fas fa-align-left"></i>
-                </button>
-                <button class="btn" onclick="execCommand('justifyFull')" title="ضبط">
-                    <i class="fas fa-align-justify"></i>
-                </button>
-            </div>
+    <!-- Toast -->
+    <div class="toast-container" id="toastContainer">
+        <div class="toast" id="toast"><div class="toast-dot"></div><span id="toastMessage">رسالة</span></div>
+    </div>
 
-            <!-- قوائم -->
-            <div class="toolbar-group">
-                <button class="btn" onclick="execCommand('insertUnorderedList')" title="قائمة نقطية">
-                    <i class="fas fa-list-ul"></i>
+    <!-- ⭐ MODAL SYSTEM -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-panel" role="dialog" aria-modal="true">
+            <div class="modal-header">
+                <h3 id="modalTitle">عنوان</h3>
+                <button class="modal-close" id="modalClose" aria-label="إغلاق">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
-                <button class="btn" onclick="execCommand('insertOrderedList')" title="قائمة رقمية">
-                    <i class="fas fa-list-ol"></i>
-                </button>
             </div>
-
-            <!-- تنسيقات متقدمة -->
-            <div class="toolbar-group">
-                <select class="btn" onchange="execCommandWithArg('formatBlock', this.value)">
-                    <option value="p">فقرة عادية</option>
-                    <option value="h1">عنوان 1</option>
-                    <option value="h2">عنوان 2</option>
-                    <option value="h3">عنوان 3</option>
-                    <option value="blockquote">اقتباس</option>
-                </select>
-                <select class="btn" onchange="execCommandWithArg('fontName', this.value)">
-                    <option value="Cairo">Cairo</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Editor -->
-        <div class="editor-container">
-            <div id="editor" contenteditable="true"></div>
-            <div class="word-count-badge">
-                <i class="fas fa-pencil-alt"></i>
-                <span id="wordCount">0 كلمة</span>
-            </div>
-        </div>
-
-        <!-- Status Bar -->
-        <div class="status-bar">
-            <span id="lastSaved">آخر حفظ: لم يتم الحفظ بعد</span>
-            <span id="charCount">0 حرف</span>
-        </div>
-
-        <!-- Floating Action Button -->
-        <div class="fab" onclick="toggleFabMenu()">
-            <i class="fas fa-plus"></i>
-        </div>
-        <div class="fab-menu">
-            <div class="fab-item" onclick="createNewDocument()" title="مستند جديد">
-                <i class="fas fa-file"></i>
-            </div>
-            <div class="fab-item" onclick="saveToLocalStorage()" title="حفظ">
-                <i class="fas fa-save"></i>
-            </div>
-            <div class="fab-item" onclick="exportAsPDF()" title="PDF تصدير">
-                <i class="fas fa-file-pdf"></i>
-            </div>
+            <div class="modal-body" id="modalBody"></div>
         </div>
     </div>
 
+    <!-- Navbar -->
+    <header id="navbar">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">YOUR_<span>BRAND</span></a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#hero" data-section="hero">الرئيسية</a></li>
+                    <li><a href="#services" data-section="services">الخدمات</a></li>
+                    <li><a href="#packages" data-section="packages">الباقات</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero (No Button) -->
+    <section id="hero" class="hero">
+        <div class="container hero-content fade-up">
+            <div class="section-badge">🚀 الجيل القادم من الاتصالات</div>
+            <h1>اتصل أكتر...<br><span class="gradient-word">وادفع أقل.</span></h1>
+            <p>خطوط وباقات مكالمات وإنترنت بأسعار اقتصادية، مع تجربة سهلة وسريعة من خلال تطبيقنا المستقبلي.</p>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="services-header fade-up">
+                <div class="section-badge">ماذا نقدم</div>
+                <h2 class="section-title">خدمات مصممة لمستقبلك</h2>
+            </div>
+            <div class="services-grid" id="servicesGrid">
+                <div class="skeleton-card"><div class="skeleton sk-icon"></div><div class="skeleton sk-title"></div><div class="skeleton sk-text"></div><div class="skeleton sk-text short"></div></div>
+                <div class="skeleton-card"><div class="skeleton sk-icon"></div><div class="skeleton sk-title"></div><div class="skeleton sk-text"></div><div class="skeleton sk-text short"></div></div>
+                <div class="skeleton-card"><div class="skeleton sk-icon"></div><div class="skeleton sk-title"></div><div class="skeleton sk-text"></div><div class="skeleton sk-text short"></div></div>
+                <div class="skeleton-card"><div class="skeleton sk-icon"></div><div class="skeleton sk-title"></div><div class="skeleton sk-text"></div><div class="skeleton sk-text short"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="packages-section">
+        <div class="container">
+            <div class="services-header fade-up">
+                <div class="section-badge">💎 عروض حصرية</div>
+                <h2 class="section-title">اختر باقتك المثالية</h2>
+            </div>
+
+            <div class="packages-tabs fade-up">
+                <button class="tab-btn active" onclick="switchTab('units')">باقات الوحدات</button>
+                <button class="tab-btn" onclick="switchTab('mega')">باقات الميجا</button>
+            </div>
+
+            <div class="packages-grid" id="packagesGrid">
+                <!-- Cards will be injected here via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- App Section (Cleaned) -->
+    <section id="app" class="app-section">
+        <div class="container">
+            <div class="app-container fade-up">
+                <div class="app-content">
+                    <div class="section-badge">📱 تطبيق واحد لكل شيء</div>
+                    <h2>كل خدماتك في مكان واحد</h2>
+                    <p>استعرض الخطوط والباقات والعروض بسهولة وسرعة فائقة من خلال تطبيقنا الذكي.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Modal Triggers -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <span class="footer-link" data-modal="about">عن الموقع</span>
+                <span class="footer-link" data-modal="privacy">سياسة الخصوصية</span>
+                <span class="footer-link" data-modal="terms">شروط الاستخدام</span>
+                <span class="footer-link" data-modal="contact">تواصل معنا</span>
+            </div>
+            <p>&copy; 2060 YOUR_BRAND_NAME. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
     <script>
-        let isDarkMode = false;
-        let autoSaveInterval;
-
-        // تنفيذ الأوامر
-        function execCommand(command) {
-            document.execCommand(command, false, null);
-            updateWordCount();
-        }
-
-        function execCommandWithArg(command, arg) {
-            document.execCommand(command, false, arg);
-            updateWordCount();
-        }
-
-        // تحديث عداد الكلمات
-        function updateWordCount() {
-            const text = document.getElementById('editor').innerText;
-            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
-            const chars = text.length;
-            
-            document.getElementById('wordCount').innerText = `${words.length} كلمة`;
-            document.getElementById('charCount').innerText = `${chars} حرف`;
-        }
-
-        // إدارة الحفظ
-        function saveToLocalStorage() {
-            const content = document.getElementById('editor').innerHTML;
-            localStorage.setItem('editorContent', content);
-            updateLastSaved();
-            showNotification('تم الحفظ بنجاح!');
-        }
-
-        function loadFromLocalStorage() {
-            const content = localStorage.getItem('editorContent');
-            if (content) {
-                document.getElementById('editor').innerHTML = content;
-                updateWordCount();
-            }
-        }
-
-        // إنشاء مستند جديد
-        function createNewDocument() {
-            if (confirm('هل أنت متأكد من إنشاء مستند جديد؟ سيتم مسح المحتوى الحالي.')) {
-                document.getElementById('editor').innerHTML = '';
-                updateWordCount();
-            }
-        }
-
-        // تصدير المستند
-        function exportAsPDF() {
-            window.print();
-        }
-
-        function downloadFile(content, filename, contentType) {
-            const blob = new Blob([content], { type: contentType });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        // إدارة الإشعارات
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 100);
-
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
-            }, 3000);
-        }
-
-        // تحديث وقت آخر حفظ
-        function updateLastSaved() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('ar-EG');
-            document.getElementById('lastSaved').innerText = `آخر حفظ: ${timeString}`;
-        }
-
-        // الوضع الليلي
-        function toggleDarkMode() {
-            isDarkMode = !isDarkMode;
-            document.body.classList.toggle('dark-mode');
-            const themeIcon = document.querySelector('.header-actions .btn i');
-            themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        // إدارة قائمة FAB
-        function toggleFabMenu() {
-            document.querySelector('.fab-menu').classList.toggle('active');
-        }
-
-        // تهيئة التطبيق
-        window.onload = function() {
-            loadFromLocalStorage();
-            
-            // الحفظ التلقائي كل 5 دقائق
-            autoSaveInterval = setInterval(saveToLocalStorage, 300000);
-            
-            // تحديث عداد الكلمات عند الكتابة
-            document.getElementById('editor').addEventListener('input', updateWordCount);
-            
-            // تحذير عند مغادرة الصفحة
-            window.addEventListener('beforeunload', (e) => {
-                e.preventDefault();
-                e.returnValue = '';
-            });
+        /**
+         * ==========================================
+         * CONFIGURATION
+         * ==========================================
+         */
+        const CONFIG = {
+            APP_LINK: "YOUR_APP_LINK",
+            API_URL: "YOUR_API_URL",
+            BRAND_NAME: "YOUR_BRAND_NAME",
+            CONTACT: { PHONE: "YOUR_PHONE", WHATSAPP: "YOUR_WHATSAPP", EMAIL: "YOUR_EMAIL" },
+            // ⭐ ضع رقم WhatsApp هنا بصيغة دولية بدون علامة + أو مسافات
+            WHATSAPP_NUMBER: "201XXXXXXXXX" 
         };
+
+        const FALLBACK_SERVICES = [
+            { title: "خطوط موبايل", desc: "خطوط مرنة بأرقام مميزة وأسعار تناسب الجميع.", icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>' },
+            { title: "باقات مكالمات", desc: "مكالمات محلية ودولية بجودة عالية وأسعار اقتصادية.", icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>' },
+            { title: "باقات إنترنت", desc: "سرعات فائقة وتغطية واسعة تناسب كل احتياجاتك الرقمية.", icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>' },
+            { title: "عروض حصرية", desc: "عروض محدثة باستمرار مع خصومات خاصة لمستخدمي التطبيق.", icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' }
+        ];
+
+        /**
+         * ==========================================
+         * ⭐ PACKAGES DATA
+         * ==========================================
+         */
+        const unitsPlans = [
+            { id: 1, value: 2800, unit: 'وحدة', base: 70, company: 108, sell: 80 },
+            { id: 2, value: 3100, unit: 'وحدة', base: 80, company: 123, sell: 90 },
+            { id: 3, value: 4250, unit: 'وحدة', base: 115, company: 177, sell: 125 },
+            { id: 4, value: 6500, unit: 'وحدة', base: 145, company: 223, sell: 155 },
+            { id: 5, value: 9000, unit: 'وحدة', base: 175, company: 269, sell: 185 },
+            { id: 6, value: 12000, unit: 'وحدة', base: 225, company: 300, sell: 235 }
+        ];
+
+        const megaPlans = [
+            { id: 1, value: 4250, unit: 'ميجا', base: 75, company: 150, sell: 95 },
+            { id: 2, value: 6000, unit: 'ميجا', base: 99, company: 180, sell: 120 },
+            { id: 3, value: 10500, unit: 'ميجا', base: 145, company: 350, sell: 165 },
+            { id: 4, value: 18000, unit: 'ميجا', base: 235, company: 370, sell: 255 },
+            { id: 5, value: 29000, unit: 'ميجا', base: 350, company: 500, sell: 370 },
+            { id: 6, value: 45000, unit: 'ميجا', base: 450, company: 700, sell: 470 }
+        ];
+
+        const governorates = [
+            "القاهرة", "الجيزة", "الإسكندرية", "الدقهلية", "البحر الأحمر", "البحيرة", "الفيوم", "الغربية", "الإسماعيلية", "المنوفية", "المنيا", "القليوبية", "الوادي الجديد", "السويس", "أسوان", "أسيوط", "بني سويف", "بورسعيد", "دمياط", "الشرقية", "جنوب سيناء", "كفر الشيخ", "مطروح", "الأقصر", "قنا", "شمال سيناء", "سوهاج"
+        ];
+
+        let currentSelectedPlan = null;
+
+        /**
+         * ==========================================
+         * ⭐ MODAL CONTENT DATABASE
+         * ==========================================
+         */
+        const MODAL_CONTENT = {
+            about: {
+                title: "عن الموقع",
+                html: `
+                    <h4>من نحن</h4>
+                    <p>نحن شركة اتصالات من الجيل القادم، نؤمن بأن التواصل يجب أن يكون بسيطاً وسريعاً وبأسعار عادلة للجميع. انطلقنا برؤية واضحة لتقديم تجربة اتصالات تختلف عن التقليدي.</p>
+                    
+                    <h4>رؤيتنا</h4>
+                    <p>نسعى لأن نكون الخيار الأول للاتصالات الاقتصادية الذكية في المنطقة، من خلال دمج التكنولوجيا المتقدمة مع أسعار تنافسية حقيقية.</p>
+                    
+                    <h4>لماذا نحن؟</h4>
+                    <ul>
+                        <li>أسعار شفافة بدون رسوم مخفية أو مفاجآت</li>
+                        <li>تطبيق ذكي لإدارة حسابك وباقاتك بالكامل</li>
+                        <li>تغطية واسعة وشبكة مستقرة عالية الجودة</li>
+                        <li>دعم فني متجاوب على مدار الساعة</li>
+                        <li>عروض وخصومات حصرية لمستخدمي التطبيق</li>
+                    </ul>
+                    
+                    <h4>التزامنا</h4>
+                    <p>نلتزم بتقديم أعلى معايير الجودة والشفافية في كل خدمة نقدمها. رضاك هو مقياس نجاحنا، ونعمل باستمرار على تطوير خدماتنا بناءً على ملاحظات عملائنا.</p>
+                    
+                    <span class="last-updated">آخر تحديث: سبتمبر 2026</span>
+                `
+            },
+            privacy: {
+                title: "سياسة الخصوصية",
+                html: `
+                    <h4>١. مقدمة</h4>
+                    <p>خصوصيتك مهمة لنا. توضح هذه السياسة كيفية جمع واستخدام وحماية بياناتك الشخصية عند استخدامك لخدماتنا وتطبيقنا.</p>
+                    
+                    <h4>٢. البيانات التي نجمعها</h4>
+                    <ul>
+                        <li>بيانات الهوية: الاسم، رقم الهاتف، البريد الإلكتروني</li>
+                        <li>بيانات الاستخدام: سجل المكالمات، استهلاك البيانات، تفضيلات الباقات</li>
+                        <li>بيانات الجهاز: نوع الجهاز، نظام التشغيل، معرف الجهاز الفريد</li>
+                        <li>بيانات الدفع: يتم معالجتها عبر بوابات دفع آمنة ومعتمدة</li>
+                    </ul>
+                    
+                    <h4>٣. كيف نستخدم بياناتك</h4>
+                    <ul>
+                        <li>تقديم وتحسين خدمات الاتصالات والباقات</li>
+                        <li>معالجة المدفوعات والفواتير</li>
+                        <li>إرسال إشعارات مهمة حول حسابك وعروض جديدة</li>
+                        <li>تحليل الأنماط لتحسين جودة الشبكة والتجربة</li>
+                    </ul>
+                    
+                    <h4>٤. حماية البيانات</h4>
+                    <p>نستخدم تشفيراً متقدماً (AES-256) وبروتوكولات أمان حديثة لحماية بياناتك. لا نشارك بياناتك مع أطراف ثالثة إلا بموجب القانون أو بموافقتك الصريحة.</p>
+                    
+                    <h4>٥. حقوقك</h4>
+                    <p>لحق الوصول إلى بياناتك، تصحيحها، حذفها، أو سحب موافقتك في أي وقت عبر التطبيق أو التواصل معنا مباشرة.</p>
+                    
+                    <h4>٦. التحديثات</h4>
+                    <p>قد نقوم بتحديث هذه السياسة دورياً. سيتم إخطارك بأي تغييرات جوهرية عبر التطبيق.</p>
+                    
+                    <span class="last-updated">آخر تحديث: سبتمبر 2026</span>
+                `
+            },
+            terms: {
+                title: "شروط الاستخدام",
+                html: `
+                    <h4>١. القبول بالشروط</h4>
+                    <p>باستخدامك لخدماتنا أو تطبيقنا، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا لم توافق عليها، يرجى عدم استخدام الخدمة.</p>
+                    
+                    <h4>٢. الخدمات والباقات</h4>
+                    <ul>
+                        <li>الأسعار والباقات قابلة للتغيير مع إشعار مسبق</li>
+                        <li>صلاحية الباقات محددة زمنياً ولا تُرحل تلقائياً إلا حسب شروط كل باقة</li>
+                        <li>يحق لنا تعديل أو إيقاف أي خدمة مع إشعار مناسب</li>
+                    </ul>
+                    
+                    <h4>٣. الاستخدام المقبول</h4>
+                    <p>تتعهد بعدم استخدام خدماتنا في أي نشاط غير قانوني، أو لإرسال محتوى مزعج، أو لمحاولة اختراق الشبكة أو التطبيقات.</p>
+                    
+                    <h4>٤. المسؤولية</h4>
+                    <p>لا نتحمل مسؤولية أي انقطاع مؤقت في الخدمة ناتج عن صيانة طارئة أو ظروف خارجة عن إرادتنا. التزامنا يقتصر على قيمة الخدمة المدفوعة.</p>
+                    
+                    <h4>٥. إنهاء الخدمة</h4>
+                    <p>يحق لنا تعليق أو إنهاء خدمتك في حالة مخالفة شروط الاستخدام أو عدم سداد المستحقات.</p>
+                    
+                    <h4>٦. القانون الحاكم</h4>
+                    <p>تخضع هذه الشروط للقوانين المعمول بها في بلد الإقامة، وأي نزاع يتم حله ودياً أولاً ثم عبر القنوات القانونية المختصة.</p>
+                    
+                    <span class="last-updated">آخر تحديث: سبتمبر 2026</span>
+                `
+            },
+            contact: {
+                title: "تواصل معنا",
+                html: `
+                    <h4>نحن هنا لمساعدتك</h4>
+                    <p>فريق الدعم متاح على مدار الساعة للإجابة على استفساراتك ومساعدتك في أي مشكلة تواجهك.</p>
+                    
+                    <h4>قنوات التواصل</h4>
+                    <ul>
+                        <li>📞 الهاتف: ${CONFIG.CONTACT.PHONE !== 'YOUR_PHONE' ? CONFIG.CONTACT.PHONE : '+00 000 000 0000'}</li>
+                        <li>💬 واتساب: ${CONFIG.CONTACT.WHATSAPP !== 'YOUR_WHATSAPP' ? CONFIG.CONTACT.WHATSAPP : '+00 000 000 0000'}</li>
+                        <li>✉️ البريد: ${CONFIG.CONTACT.EMAIL !== 'YOUR_EMAIL' ? CONFIG.CONTACT.EMAIL : 'support@yourbrand.com'}</li>
+                    </ul>
+                    
+                    <h4>من خلال التطبيق</h4>
+                    <p>يمكنك التواصل معنا مباشرة من داخل التطبيق عبر قسم "الدعم والمساعدة" للحصول على رد أسرع ومتابعة حالة طلبك.</p>
+                    
+                    <h4>ساعات العمل</h4>
+                    <p>الدعم الفني: 24/7<br>المبيعات والشراكات: الأحد - الخميس، 9 ص - 6 م</p>
+                    
+                    <span class="last-updated">نتطلع لسماع منك 💜</span>
+                `
+            }
+        };
+
+        /**
+         * ==========================================
+         * ⭐ MODAL CONTROLLER
+         * ==========================================
+         */
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const modalClose = document.getElementById('modalClose');
+
+        function openModal(key) {
+            const content = MODAL_CONTENT[key];
+            if (!content) return;
+            
+            modalTitle.textContent = content.title;
+            modalBody.innerHTML = content.html;
+            modalOverlay.classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        // Event delegation for modal triggers
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest('[data-modal]');
+            if (trigger) openModal(trigger.dataset.modal);
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        /**
+         * ==========================================
+         * ⭐ PACKAGE LOGIC
+         * ==========================================
+         */
+        function switchTab(type) {
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Render packages
+            renderPackages(type === 'units' ? unitsPlans : megaPlans, type === 'units' ? 'وحدات' : 'ميجا');
+        }
+
+        function renderPackages(plans, typeName) {
+            const grid = document.getElementById('packagesGrid');
+            grid.innerHTML = ''; // Clear current
+            
+            plans.forEach((plan, index) => {
+                const saving = plan.company - plan.sell;
+                const isBestValue = index === 2; // Example: 3rd card is best value
+                
+                const card = document.createElement('div');
+                card.className = `glass-card pkg-card fade-up`;
+                
+                card.innerHTML = `
+                    <div class="pkg-header">
+                        ${isBestValue ? '<div class="pkg-badge">الأكثر طلباً 🔥</div>' : ''}
+                        <div class="pkg-type">باقة ${typeName}</div>
+                        <div class="pkg-value">${plan.value} <span>${plan.unit}</span></div>
+                    </div>
+                    
+                    <div class="pkg-body">
+                        <div class="pkg-pricing">
+                            <span class="pkg-old-price">السعر الرسمي: ~~${plan.company} جنيه~~</span>
+                            <div class="pkg-new-price">${plan.sell} <small>جنيه</small></div>
+                            <div class="pkg-save">وفر ${saving} جنيه</div>
+                        </div>
+                        
+                        <button class="pkg-btn" onclick="openOrderModal(${JSON.stringify(plan).replace(/"/g, '&quot;')}, '${typeName}')">
+                            اشترك الآن
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            
+            // Re-trigger animations
+            setTimeout(() => {
+                document.querySelectorAll('.pkg-card').forEach(el => el.classList.add('visible'));
+            }, 50);
+        }
+
+        /**
+         * ==========================================
+         * ⭐ ORDER MODAL LOGIC
+         * ==========================================
+         */
+        function openOrderModal(plan, typeName) {
+            currentSelectedPlan = { ...plan, typeName };
+            
+            modalTitle.textContent = "طلب اشتراك جديد";
+            
+            // Generate Order Details HTML
+            const saving = plan.company - plan.sell;
+            const orderSummaryHTML = `
+                <div class="order-summary">
+                    <div class="order-row"><span>نوع الباقة:</span> <span>${typeName}</span></div>
+                    <div class="order-row"><span>القيمة:</span> <span>${plan.value} ${plan.unit}</span></div>
+                    <div class="order-row"><span>السعر الأساسي:</span> <span>${plan.base} جنيه</span></div>
+                    <div class="order-row"><span>السعر الرسمي:</span> <span style="text-decoration:line-through; opacity:0.6">${plan.company} جنيه</span></div>
+                    <div class="order-row total"><span>سعر البيع:</span> <span>${plan.sell} جنيه</span></div>
+                    <div class="order-row" style="color:#2ecc71; font-size:0.9rem; margin-top:5px;"><span>💰 مقدار التوفير:</span> <span>${saving} جنيه</span></div>
+                </div>
+            `;
+
+            // Governorate Options
+            const govOptions = governorates.map(g => `<option value="${g}">${g}</option>`).join('');
+
+            modalBody.innerHTML = `
+                ${orderSummaryHTML}
+                
+                <form id="orderForm" onsubmit="handleOrderSubmit(event)">
+                    <div class="form-group" id="group-name">
+                        <label class="form-label">الاسم بالكامل</label>
+                        <input type="text" id="clientName" class="form-input" placeholder="اكتب اسمك هنا..." required>
+                        <div class="form-error">يرجى كتابة الاسم</div>
+                    </div>
+                    
+                    <div class="form-group" id="group-gov">
+                        <label class="form-label">المحافظة</label>
+                        <select id="clientGov" class="form-select" required>
+                            <option value="" disabled selected>اختر المحافظة...</option>
+                            ${govOptions}
+                        </select>
+                        <div class="form-error">يرجى اختيار المحافظة</div>
+                    </div>
+
+                    <button type="submit" class="whatsapp-btn">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        إرسال الطلب عبر WhatsApp
+                    </button>
+                </form>
+            `;
+            
+            modalOverlay.classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function handleOrderSubmit(e) {
+            e.preventDefault();
+            
+            const nameInput = document.getElementById('clientName');
+            const govInput = document.getElementById('clientGov');
+            const groupName = document.getElementById('group-name');
+            const groupGov = document.getElementById('group-gov');
+            
+            let isValid = true;
+            
+            // Validation
+            if (!nameInput.value.trim()) {
+                groupName.classList.add('error');
+                isValid = false;
+            } else {
+                groupName.classList.remove('error');
+            }
+            
+            if (!govInput.value) {
+                groupGov.classList.add('error');
+                isValid = false;
+            } else {
+                groupGov.classList.remove('error');
+            }
+            
+            if (!isValid) return;
+            
+            // Generate Order ID & Date
+            const orderId = 'ORDER-' + Math.floor(100000 + Math.random() * 900000);
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('ar-EG');
+            const timeStr = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+            
+            // Construct Message
+            const message = `
+مرحبًا، أريد الاشتراك في باقة.
+
+الاسم: ${nameInput.value}
+المحافظة: ${govInput.value}
+
+تفاصيل الباقة:
+نوع الباقة: ${currentSelectedPlan.typeName}
+الباقة: ${currentSelectedPlan.value} ${currentSelectedPlan.unit}
+السعر الأساسي: ${currentSelectedPlan.base} جنيه
+السعر في الشركة: ${currentSelectedPlan.company} جنيه
+سعر البيع: ${currentSelectedPlan.sell} جنيه
+التوفير: ${currentSelectedPlan.company - currentSelectedPlan.sell} جنيه
+
+رقم الطلب: ${orderId}
+تاريخ الطلب: ${dateStr}
+وقت الطلب: ${timeStr}
+
+أرغب في الاشتراك بهذه الباقة.
+            `.trim();
+            
+            // Open WhatsApp
+            const encodedMsg = encodeURIComponent(message);
+            const waLink = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodedMsg}`;
+            
+            window.open(waLink, '_blank');
+            closeModal();
+            showToast('تم تحويلك إلى WhatsApp', 'success');
+        }
+
+        /**
+         * ==========================================
+         * TOAST SYSTEM
+         * ==========================================
+         */
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.className = `toast ${type}`;
+            container.classList.add('show');
+            setTimeout(() => container.classList.remove('show'), 4000);
+        }
+
+        /**
+         * ==========================================
+         * MAGNETIC BUTTONS
+         * ==========================================
+         */
+        function initMagneticButtons() {
+            if (window.matchMedia('(hover: hover)').matches) {
+                document.querySelectorAll('[data-magnetic]').forEach(wrap => {
+                    const btn = wrap.querySelector('.btn');
+                    wrap.addEventListener('mousemove', (e) => {
+                        const rect = wrap.getBoundingClientRect();
+                        const x = e.clientX - rect.left - rect.width / 2;
+                        const y = e.clientY - rect.top - rect.height / 2;
+                        btn.style.transform = `translate(${x*0.2}px, ${y*0.2}px)`;
+                    });
+                    wrap.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
+                });
+            }
+        }
+
+        /**
+         * ==========================================
+         * CANVAS NETWORK
+         * ==========================================
+         */
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 130 };
+
+        function getParticleCount() {
+            if (window.innerWidth < 768) return 35;
+            if (window.innerWidth < 1200) return 60;
+            return 90;
+        }
+
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles(); }
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height;
+                this.baseSize = Math.random()*1.5+0.3; this.size = this.baseSize;
+                this.speedX = (Math.random()*0.3)-0.15; this.speedY = (Math.random()*0.3)-0.15;
+                this.color = ['#00e5ff','#b026ff','#ff2d7b'][Math.floor(Math.random()*3)];
+                this.pulseSpeed = Math.random()*0.015+0.005;
+                this.pulseOffset = Math.random()*Math.PI*2;
+            }
+            update(time) {
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x<0||this.x>canvas.width) this.speedX*=-1;
+                if (this.y<0||this.y>canvas.height) this.speedY*=-1;
+                this.size = this.baseSize + Math.sin(time*this.pulseSpeed+this.pulseOffset)*0.4;
+                if (mouse.x!=null) {
+                    const dx=mouse.x-this.x, dy=mouse.y-this.y, dist=Math.sqrt(dx*dx+dy*dy);
+                    if (dist<mouse.radius) { const f=(mouse.radius-dist)/mouse.radius; this.x-=(dx/dist)*f*2.5; this.y-=(dy/dist)*f*2.5; }
+                }
+            }
+            draw() {
+                ctx.beginPath(); ctx.arc(this.x,this.y,Math.max(0.1,this.size),0,Math.PI*2);
+                ctx.fillStyle=this.color; ctx.globalAlpha=0.6; ctx.fill(); ctx.globalAlpha=1;
+            }
+        }
+
+        function initParticles() { particles=[]; for(let i=0;i<getParticleCount();i++) particles.push(new Particle()); }
+
+        function connectParticles() {
+            const maxDist = window.innerWidth<768?90:140;
+            for(let a=0;a<particles.length;a++) {
+                for(let b=a+1;b<particles.length;b++) {
+                    const dx=particles[a].x-particles[b].x, dy=particles[a].y-particles[b].y;
+                    const dist=Math.sqrt(dx*dx+dy*dy);
+                    if(dist<maxDist) {
+                        ctx.strokeStyle=`rgba(150,200,255,${(1-dist/maxDist)*0.12})`;
+                        ctx.lineWidth=0.6; ctx.beginPath();
+                        const mx=(particles[a].x+particles[b].x)/2, my=(particles[a].y+particles[b].y)/2+(Math.random()-0.5)*20;
+                        ctx.moveTo(particles[a].x,particles[a].y);
+                        ctx.quadraticCurveTo(mx,my,particles[b].x,particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        let time=0;
+        function animateCanvas() { ctx.clearRect(0,0,canvas.width,canvas.height); time++; particles.forEach(p=>{p.update(time);p.draw()}); connectParticles(); requestAnimationFrame(animateCanvas); }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('mousemove', e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+        window.addEventListener('mouseleave', ()=>{mouse.x=null;mouse.y=null});
+        window.addEventListener('touchmove', e=>{mouse.x=e.touches[0].clientX;mouse.y=e.touches[0].clientY},{passive:true});
+        window.addEventListener('touchend', ()=>{mouse.x=null;mouse.y=null});
+
+        /**
+         * ==========================================
+         * SCROLL SPY + MENU
+         * ==========================================
+         */
+        function initScrollSpy() {
+            const sections=document.querySelectorAll('section[id]');
+            const links=document.querySelectorAll('.nav-links a[data-section]');
+            const obs=new IntersectionObserver(entries=>{
+                entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));document.querySelector(`.nav-links a[data-section="${e.target.id}"]`)?.classList.add('active')}});
+            },{threshold:0.3,rootMargin:'-80px 0px -50% 0px'});
+            sections.forEach(s=>obs.observe(s));
+        }
+
+        const hamburger=document.getElementById('hamburger'), navLinks=document.getElementById('navLinks');
+        hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');navLinks.classList.toggle('active')});
+        document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{hamburger.classList.remove('active');navLinks.classList.remove('active')}));
+        window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60)});
+
+        /**
+         * ==========================================
+         * SERVICES LOADING
+         * ==========================================
+         */
+        async function loadServices() {
+            const grid=document.getElementById('servicesGrid');
+            let data=null, apiOk=false;
+            if(CONFIG.API_URL&&CONFIG.API_URL!=="YOUR_API_URL"){
+                try{const res=await fetch(CONFIG.API_URL);if(res.ok){const json=await res.json();if(json.services?.length){data=json.services;apiOk=true}}}catch(e){showToast('تعذر الاتصال بالخادم','error')}
+            }
+            if(!apiOk){await new Promise(r=>setTimeout(r,900));data=FALLBACK_SERVICES;showToast('تم تحميل البيانات بنجاح','success')}
+            else showToast('تم تحديث الخدمات من الخادم','success');
+            grid.innerHTML=data.map((s,i)=>`<div class="glass-card service-card fade-up" style="transition-delay:${i*0.08}s"><div class="service-icon">${s.icon||''}</div><h3>${s.title}</h3><p>${s.desc}</p></div>`).join('');
+            observeFadeUp();
+        }
+
+        function observeFadeUp() {
+            const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.08});
+            document.querySelectorAll('.fade-up:not(.visible)').forEach(el=>obs.observe(el));
+        }
+
+        /**
+         * ==========================================
+         * INIT
+         * ==========================================
+         */
+        document.addEventListener('DOMContentLoaded',()=>{
+            resizeCanvas(); animateCanvas();
+            initMagneticButtons(); initScrollSpy();
+            loadServices(); observeFadeUp();
+            
+            // Initial Load of Units Packages
+            renderPackages(unitsPlans, 'وحدات');
+        });
     </script>
 </body>
 </html>
