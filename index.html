@@ -160,80 +160,22 @@
         .pkg-btn { width: 100%; margin-top: auto; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); color: #fff; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; font-family: var(--font); font-size: 1rem; }
         .pkg-btn:hover { background: var(--gradient-main); border-color: transparent; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
 
-        /* ⭐ TEAM + REVIEWS COMBINED SECTION */
-        .team-reviews-section { padding: 80px 0; overflow: hidden; }
-        .team-reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-        
-        /* Team Side */
-        .team-container { background: linear-gradient(160deg, rgba(0,229,255,0.03), rgba(176,38,255,0.05)); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 40px 25px; text-align: center; position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; }
+        /* TEAM SECTION */
+        .team-section { padding: 80px 0; overflow: hidden; }
+        .team-container { background: linear-gradient(160deg, rgba(0,229,255,0.03), rgba(176,38,255,0.05)); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 60px 30px; text-align: center; position: relative; overflow: hidden; }
         .team-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent); }
-        .team-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; color: #fff; margin-bottom: 15px; line-height: 1.4; }
+        .team-title { font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 900; color: #fff; margin-bottom: 20px; line-height: 1.4; }
         .team-title span { color: var(--accent-cyan); }
-        .team-desc { font-size: 1rem; color: rgba(255,255,255,0.7); margin-bottom: 30px; line-height: 1.8; flex: 1; }
-        .team-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; align-items: center; }
-        .team-step { display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); padding: 12px 18px; border-radius: 12px; width: 100%; max-width: 280px; transition: 0.3s; }
-        .team-step:hover { border-color: var(--accent-cyan); transform: translateX(-5px); }
-        .team-step-icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(0,229,255,0.1); color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .team-step-icon svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-        .team-step-text { font-size: 0.85rem; font-weight: 700; color: #fff; }
-        .team-btn { background: transparent; border: 2px solid var(--accent-cyan); color: var(--accent-cyan); padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: var(--font); transition: 0.3s; margin-top: auto; }
+        .team-desc { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 700px; margin: 0 auto 40px; line-height: 1.8; }
+        .team-steps { display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
+        .team-step { display: flex; flex-direction: column; align-items: center; gap: 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); padding: 20px; border-radius: 16px; min-width: 140px; transition: 0.3s; }
+        .team-step:hover { border-color: var(--accent-cyan); transform: translateY(-5px); }
+        .team-step-icon { width: 50px; height: 50px; border-radius: 50%; background: rgba(0,229,255,0.1); color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; }
+        .team-step-icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .team-step-text { font-size: 0.9rem; font-weight: 700; color: #fff; }
+        .team-arrow { color: var(--accent-purple); font-size: 1.5rem; font-weight: bold; }
+        .team-btn { background: transparent; border: 2px solid var(--accent-cyan); color: var(--accent-cyan); padding: 14px 30px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: var(--font); transition: 0.3s; }
         .team-btn:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 20px rgba(0,229,255,0.4); }
-
-        /* Reviews Side */
-        .reviews-container { background: var(--surface-glass); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 30px 25px; position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; }
-        .reviews-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-purple), transparent); }
-        .reviews-header { text-align: center; margin-bottom: 20px; }
-        .reviews-header h3 { font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
-        .reviews-header p { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
-        
-        .review-form-card { background: rgba(0,0,0,0.2); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; }
-        .star-rating { display: flex; gap: 6px; margin-bottom: 12px; direction: ltr; justify-content: center; }
-        .star-rating .star { width: 26px; height: 26px; cursor: pointer; transition: 0.2s; fill: rgba(255,255,255,0.1); stroke: rgba(255,255,255,0.3); stroke-width: 1.5; }
-        .star-rating .star.active, .star-rating .star:hover { fill: #FFD700; stroke: #FFD700; filter: drop-shadow(0 0 5px rgba(255,215,0,0.5)); }
-        .star-rating .star:hover ~ .star { fill: rgba(255,255,255,0.1); stroke: rgba(255,255,255,0.3); filter: none; }
-        .review-textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px 14px; color: #fff; font-family: var(--font); font-size: 0.9rem; resize: vertical; min-height: 80px; transition: 0.3s; margin-bottom: 12px; }
-        .review-textarea:focus { border-color: var(--accent-cyan); background: rgba(0,0,0,0.5); box-shadow: 0 0 0 3px rgba(0,229,255,0.05); }
-        .review-submit-btn { background: var(--gradient-main); color: #fff; border: none; padding: 10px 28px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; cursor: pointer; font-family: var(--font); transition: 0.3s; display: block; margin: 0 auto; }
-        .review-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(0,229,255,0.3); }
-
-        .reviews-list { display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; padding-left: 5px; flex: 1; }
-        .reviews-list::-webkit-scrollbar { width: 4px; }
-        .reviews-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
-        .review-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 15px; transition: 0.3s; position: relative; }
-        .review-card:hover { border-color: var(--border-highlight); }
-        .review-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-        .review-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; color: #fff; flex-shrink: 0; overflow: hidden; }
-        .review-avatar img { width: 100%; height: 100%; object-fit: cover; }
-        .review-info h5 { font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
-        .review-stars { display: flex; gap: 2px; direction: ltr; }
-        .review-stars svg { width: 11px; height: 11px; fill: #FFD700; stroke: none; }
-        .review-stars svg.empty { fill: rgba(255,255,255,0.1); }
-        .review-text { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
-        .review-date { font-size: 0.7rem; color: rgba(255,255,255,0.3); margin-top: 6px; }
-        .no-reviews { text-align: center; color: rgba(255,255,255,0.3); font-size: 0.85rem; padding: 20px; }
-
-        /* Delete Button */
-        .review-delete-btn {
-            position: absolute; top: 12px; left: 12px;
-            background: rgba(255,45,123,0.1); border: 1px solid rgba(255,45,123,0.2);
-            color: var(--accent-pink); width: 28px; height: 28px; border-radius: 8px;
-            display: flex; align-items: center; justify-content: center; cursor: pointer;
-            transition: 0.3s; opacity: 0; pointer-events: none;
-        }
-        .review-card:hover .review-delete-btn.can-delete { opacity: 1; pointer-events: all; }
-        .review-delete-btn:hover { background: var(--accent-pink); color: #fff; }
-        .review-delete-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-        /* My Reviews in Profile Modal */
-        .my-reviews-section { margin-top: 20px; border-top: 1px solid var(--border-subtle); padding-top: 20px; }
-        .my-reviews-title { font-size: 1rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
-        .my-reviews-title svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
-        .my-review-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px; margin-bottom: 10px; position: relative; }
-        .my-review-item .review-text { font-size: 0.85rem; margin-bottom: 5px; }
-        .my-review-item .review-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
-        .my-review-delete { background: none; border: none; color: var(--accent-pink); cursor: pointer; font-size: 0.75rem; font-family: var(--font); font-weight: 600; padding: 4px 8px; border-radius: 6px; transition: 0.3s; }
-        .my-review-delete:hover { background: rgba(255,45,123,0.1); }
-        .no-my-reviews { text-align: center; color: rgba(255,255,255,0.3); font-size: 0.85rem; padding: 15px; }
 
         /* APP */
         .app-section { padding: 60px 0 100px; }
@@ -242,26 +184,17 @@
         .app-content h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; margin-bottom: 20px; letter-spacing: -1px; }
         .app-content p { color: rgba(255,255,255,0.5); font-size: 1rem; margin-bottom: 0; }
 
-        /* MODAL */
+        /* ⭐ MODAL SYSTEM */
         .modal-overlay { position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 15px; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out); }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-panel { background: #0f0f13; border: 1px solid var(--border-highlight); border-radius: var(--radius-xl); width: 100%; max-width: 600px; max-height: 90vh; display: flex; flex-direction: column; position: relative; overflow: hidden; transform: scale(0.95) translateY(20px); transition: transform 0.4s var(--ease-out); box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
+        .modal-panel { background: #0f0f13; border: 1px solid var(--border-highlight); border-radius: var(--radius-xl); width: 100%; max-width: 500px; max-height: 90vh; display: flex; flex-direction: column; position: relative; overflow: hidden; transform: scale(0.95) translateY(20px); transition: transform 0.4s var(--ease-out); box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
         .modal-overlay.active .modal-panel { transform: scale(1) translateY(0); }
-        .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 20px; flex-shrink: 0; border-bottom: 1px solid var(--border-subtle); background: rgba(255,255,255,0.02); }
+        .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 25px; flex-shrink: 0; border-bottom: 1px solid var(--border-subtle); background: rgba(255,255,255,0.02); }
         .modal-header h3 { font-size: 1.2rem; font-weight: 800; color: #fff; }
         .modal-close { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); color: rgba(255,255,255,0.6); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; flex-shrink: 0; }
         .modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
-        .modal-body { padding: 20px; overflow-y: auto; flex: 1; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; }
-        .team-modal-content h4, .number-modal-content h4 { font-size: 1.1rem; color: var(--accent-cyan); margin: 15px 0 10px; font-weight: 700; }
-        .team-modal-content p, .number-modal-content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.8; margin-bottom: 10px; }
-        .team-modal-content ul { list-style: none; padding: 0; margin-bottom: 20px; }
-        .team-modal-content ul li { position: relative; padding-right: 20px; margin-bottom: 8px; color: rgba(255,255,255,0.7); font-size: 0.95rem; }
-        .team-modal-content ul li::before { content: '✓'; position: absolute; right: 0; color: var(--accent-cyan); font-weight: bold; }
-        .order-summary { background: rgba(255,255,255,0.02); border-radius: 16px; padding: 15px; margin-bottom: 25px; border: 1px dashed var(--border-subtle); position: relative; }
-        .order-summary::before { content: 'ملخص العرض'; position: absolute; top: -10px; right: 15px; background: #0f0f13; padding: 0 10px; font-size: 0.75rem; color: var(--accent-cyan); font-weight: 700; }
-        .order-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; color: rgba(255,255,255,0.7); }
-        .order-row.total { border-top: 1px solid var(--border-subtle); padding-top: 10px; margin-top: 10px; font-weight: 800; color: #fff; font-size: 1.1rem; }
-        .order-row.total span:last-child { color: var(--accent-cyan); }
+        .modal-body { padding: 25px; overflow-y: auto; flex: 1; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; }
+        
         .form-group { margin-bottom: 18px; position: relative; }
         .form-label { display: block; margin-bottom: 6px; font-size: 0.9rem; color: rgba(255,255,255,0.8); font-weight: 600; }
         .form-input, .form-select { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px 16px; color: #fff; font-family: var(--font); font-size: 16px; transition: 0.3s; appearance: none; }
@@ -281,11 +214,70 @@
         .number-type-option h5 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
         .number-type-option p { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin: 0; }
 
-        .profile-modal-avatar { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--accent-cyan); margin: 0 auto 20px; overflow: hidden; cursor: pointer; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-        .profile-modal-avatar:hover { border-color: var(--accent-purple); box-shadow: 0 0 20px rgba(0,229,255,0.3); }
-        .profile-modal-avatar img { width: 100%; height: 100%; object-fit: cover; display: none; }
-        .profile-modal-avatar svg { width: 35px; height: 35px; stroke: rgba(255,255,255,0.3); fill: none; stroke-width: 1.5; }
-        .profile-modal-avatar input { display: none; }
+        .team-modal-content h4, .number-modal-content h4 { font-size: 1.1rem; color: var(--accent-cyan); margin: 15px 0 10px; font-weight: 700; }
+        .team-modal-content p, .number-modal-content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.8; margin-bottom: 10px; }
+        .team-modal-content ul { list-style: none; padding: 0; margin-bottom: 20px; }
+        .team-modal-content ul li { position: relative; padding-right: 20px; margin-bottom: 8px; color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+        .team-modal-content ul li::before { content: '✓'; position: absolute; right: 0; color: var(--accent-cyan); font-weight: bold; }
+        .order-summary { background: rgba(255,255,255,0.02); border-radius: 16px; padding: 15px; margin-bottom: 25px; border: 1px dashed var(--border-subtle); position: relative; }
+        .order-summary::before { content: 'ملخص العرض'; position: absolute; top: -10px; right: 15px; background: #0f0f13; padding: 0 10px; font-size: 0.75rem; color: var(--accent-cyan); font-weight: 700; }
+        .order-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; color: rgba(255,255,255,0.7); }
+        .order-row.total { border-top: 1px solid var(--border-subtle); padding-top: 10px; margin-top: 10px; font-weight: 800; color: #fff; font-size: 1.1rem; }
+        .order-row.total span:last-child { color: var(--accent-cyan); }
+
+        /* ⭐ PROFILE MODAL REDESIGN */
+        .profile-modal-wrapper { text-align: center; }
+        
+        .profile-avatar-container { position: relative; width: 100px; height: 100px; margin: 0 auto 20px; }
+        .profile-avatar-ring {
+            width: 100px; height: 100px; border-radius: 50%; padding: 3px;
+            background: var(--gradient-main); position: relative;
+            box-shadow: 0 0 25px rgba(0,229,255,0.3);
+            animation: avatarPulse 3s infinite ease-in-out;
+        }
+        @keyframes avatarPulse { 0%, 100% { box-shadow: 0 0 25px rgba(0,229,255,0.3); } 50% { box-shadow: 0 0 40px rgba(176,38,255,0.4); } }
+        
+        .profile-avatar-inner {
+            width: 100%; height: 100%; border-radius: 50%; background: #1a1a2e;
+            overflow: hidden; display: flex; align-items: center; justify-content: center; cursor: pointer;
+        }
+        .profile-avatar-inner img { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .profile-avatar-inner svg { width: 40px; height: 40px; stroke: rgba(255,255,255,0.3); fill: none; stroke-width: 1.5; }
+        .profile-avatar-inner input { display: none; }
+        
+        .profile-camera-badge {
+            position: absolute; bottom: 2px; right: 2px; width: 30px; height: 30px;
+            border-radius: 50%; background: var(--accent-purple); border: 2px solid #0f0f13;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            transition: 0.3s; z-index: 2;
+        }
+        .profile-camera-badge:hover { transform: scale(1.1); background: var(--accent-cyan); }
+        .profile-camera-badge svg { width: 14px; height: 14px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        .profile-welcome { font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-bottom: 25px; }
+
+        .profile-form .form-group { text-align: right; }
+        .profile-form .form-input { background: rgba(255,255,255,0.03); }
+        
+        .profile-save-btn {
+            width: 100%; background: var(--gradient-main); border: none; color: #fff;
+            padding: 14px; border-radius: 12px; font-weight: 700; font-size: 1rem;
+            cursor: pointer; font-family: var(--font); transition: 0.3s; margin-top: 5px;
+            box-shadow: 0 5px 20px rgba(0,229,255,0.2);
+        }
+        .profile-save-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,229,255,0.3); }
+
+        .profile-stats {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+            margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-subtle);
+        }
+        .profile-stat-item {
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle);
+            border-radius: 12px; padding: 12px; text-align: center; transition: 0.3s;
+        }
+        .profile-stat-item:hover { border-color: var(--border-highlight); background: rgba(255,255,255,0.04); }
+        .profile-stat-value { font-size: 1.3rem; font-weight: 800; color: var(--accent-cyan); display: block; margin-bottom: 2px; }
+        .profile-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
 
         /* FOOTER */
         footer { border-top: 1px solid var(--border-subtle); padding: 40px 0; text-align: center; color: rgba(255,255,255,0.3); font-size: 0.85rem; background: rgba(5,5,7,0.95); }
@@ -321,10 +313,9 @@
             .hero-content h1 { font-size: 2.8rem; }
             .pkg-value { font-size: 2rem; }
             .pkg-new-price { font-size: 1.8rem; }
-            .team-reviews-grid { grid-template-columns: 1fr; }
-            .team-container, .reviews-container { padding: 30px 18px; }
-            .team-steps { flex-direction: column; }
-            .team-step { max-width: 100%; }
+            .team-container { padding: 30px 18px; }
+            .team-steps { flex-direction: column; gap: 10px; }
+            .team-step { width: 100%; max-width: 250px; }
             .number-features { flex-direction: column; align-items: center; }
             .number-feature { width: 100%; max-width: 280px; justify-content: center; }
             .number-type-grid { grid-template-columns: 1fr; }
@@ -393,7 +384,7 @@
                     <li><a href="#hero" data-section="hero"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>الرئيسية</a></li>
                     <li><a href="#get-number" data-section="get-number"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>رقمي</a></li>
                     <li><a href="#packages" data-section="packages"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>الباقات</a></li>
-                    <li><a href="#team-reviews" data-section="team-reviews"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>فريق العمل</a></li>
+                    <li><a href="#team" data-section="team"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>فريق العمل</a></li>
                 </ul>
                 <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
             </nav>
@@ -460,47 +451,23 @@
         </div>
     </section>
 
-    <!-- ⭐ TEAM + REVIEWS COMBINED -->
-    <section id="team-reviews" class="team-reviews-section">
+    <!-- Team Section -->
+    <section id="team" class="team-section">
         <div class="container">
-            <div class="team-reviews-grid fade-up">
-                
-                <!-- Team Side -->
-                <div class="team-container">
-                    <div class="section-badge">👥 ميزة حصرية</div>
-                    <h2 class="team-title">خليك إنت وصاحبك على نفس <span>الفريق!</span></h2>
-                    <p class="team-desc">لو إنت وصاحبك أو حد من قرايبك بتكلموا بعض كتير، ليه تدفعوا على كل مكالمة؟ مع نظام "فريق العمل"، تقدر تجمع خطين مع بعض وتتكلموا ببلاش.</p>
-                    <div class="team-steps">
-                        <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><span class="team-step-text">خطين مع بعض</span></div>
-                        <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="team-step-text">فريق واحد</span></div>
-                        <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="team-step-text">مكالمات مجانية</span></div>
-                        <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="team-step-text">توفير أكتر</span></div>
-                    </div>
-                    <button class="team-btn" onclick="openTeamModal()">عايز تعمل فريقك؟ اطلب خطين دلوقتي</button>
+            <div class="team-container fade-up">
+                <div class="section-badge">👥 ميزة حصرية</div>
+                <h2 class="team-title">خليك إنت وصاحبك على نفس <span>الفريق!</span></h2>
+                <p class="team-desc">لو إنت وصاحبك أو حد من قرايبك بتكلموا بعض كتير، ليه تدفعوا على كل مكالمة؟ مع نظام "فريق العمل"، تقدر تجمع خطين مع بعض في مكان واحد، وتتكلموا بينكم ببلاش من غير ما وحدات الباقة تتأثر.</p>
+                <div class="team-steps">
+                    <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><span class="team-step-text">خطين مع بعض</span></div>
+                    <span class="team-arrow">←</span>
+                    <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="team-step-text">فريق واحد</span></div>
+                    <span class="team-arrow">←</span>
+                    <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="team-step-text">مكالمات مجانية</span></div>
+                    <span class="team-arrow">←</span>
+                    <div class="team-step"><div class="team-step-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="team-step-text">توفير أكتر</span></div>
                 </div>
-
-                <!-- Reviews Side -->
-                <div class="reviews-container">
-                    <div class="reviews-header">
-                        <div class="section-badge" style="margin-bottom:10px;">💬 آراء العملاء</div>
-                        <h3>شاركنا رأيك</h3>
-                        <p>رأيك يهمنا ويساعدنا نتطور</p>
-                    </div>
-
-                    <div class="review-form-card">
-                        <div class="star-rating" id="starRating">
-                            <svg class="star" data-value="1" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                            <svg class="star" data-value="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                            <svg class="star" data-value="3" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                            <svg class="star" data-value="4" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                            <svg class="star" data-value="5" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        </div>
-                        <textarea class="review-textarea" id="reviewText" placeholder="اكتب تجربتك معانا هنا..."></textarea>
-                        <button class="review-submit-btn" onclick="submitReview()">أضف تعليقك</button>
-                    </div>
-
-                    <div class="reviews-list" id="reviewsList"></div>
-                </div>
+                <button class="team-btn" onclick="openTeamModal()">عايز تعمل فريقك؟ اطلب خطين دلوقتي</button>
             </div>
         </div>
     </section>
@@ -574,7 +541,6 @@
 
         let currentSelectedPlan = null;
         let selectedNumberType = 'من اختياركم';
-        let selectedRating = 0;
 
         // ===== MODAL SYSTEM =====
         const modalOverlay = document.getElementById('modalOverlay');
@@ -594,60 +560,61 @@
         modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeModal(); });
         document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
 
-        // ===== ⭐ PROFILE MODAL WITH MY REVIEWS =====
+        // ===== ⭐ PROFILE MODAL (REDESIGNED) =====
         function openProfileModal() {
             modalTitle.textContent = "حسابي الشخصي";
             const savedName = localStorage.getItem('ybn_profile_name') || '';
             const savedEmail = localStorage.getItem('ybn_profile_email') || '';
             const savedAvatar = localStorage.getItem('ybn_avatar') || '';
+            const joinDate = localStorage.getItem('ybn_join_date') || new Date().toLocaleDateString('ar-EG');
+            
+            // Count orders
+            const orderKeys = Object.keys(localStorage).filter(k => k.startsWith('ybn_order_'));
+            const orderCount = orderKeys.length;
+
             const avatarDisplay = savedAvatar ? 'display:block' : 'display:none';
             const iconDisplay = savedAvatar ? 'display:none' : 'display:block';
 
-            // Get my reviews
-            const allReviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
-            const myReviews = allReviews.filter(r => r.name === savedName && savedName !== '');
-
-            let myReviewsHTML = '';
-            if (savedName && myReviews.length > 0) {
-                const starSVG = '<svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:#FFD700;stroke:none;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
-                const emptySVG = '<svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:rgba(255,255,255,0.1);stroke:none;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
-                
-                myReviewsHTML = `
-                    <div class="my-reviews-section">
-                        <div class="my-reviews-title">
-                            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                            تعليقاتي (${myReviews.length})
-                        </div>
-                        ${myReviews.map(r => {
-                            const stars = Array.from({length:5},(_,i)=>i<r.rating?starSVG:emptySVG).join('');
-                            return `<div class="my-review-item">
-                                <div class="review-text">${r.text}</div>
-                                <div class="review-meta">
-                                    <span>${stars} · ${r.date}</span>
-                                    <button class="my-review-delete" onclick="deleteReview(${r.id})">حذف</button>
-                                </div>
-                            </div>`;
-                        }).join('')}
-                    </div>
-                `;
-            } else if (savedName) {
-                myReviewsHTML = `<div class="my-reviews-section"><div class="my-reviews-title"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>تعليقاتي</div><div class="no-my-reviews">مافيش تعليقات لسه 💬</div></div>`;
-            }
-
             modalBody.innerHTML = `
-                <label class="profile-modal-avatar" for="modalAvatarInput">
-                    <input type="file" id="modalAvatarInput" accept="image/*" onchange="handleModalAvatar(this)">
-                    <svg style="${iconDisplay}" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    <img id="modalAvatarImg" src="${savedAvatar}" style="${avatarDisplay}" alt="">
-                </label>
-                <p style="text-align:center;font-size:0.8rem;color:rgba(255,255,255,0.4);margin-bottom:20px;">اضغط على الصورة لتغييرها</p>
-                
-                <form onsubmit="handleProfileSave(event)">
-                    <div class="form-group"><label class="form-label">الاسم</label><input type="text" id="modalName" class="form-input" value="${savedName}" placeholder="اكتب اسمك..." required></div>
-                    <div class="form-group"><label class="form-label">الإيميل</label><input type="email" id="modalEmail" class="form-input" value="${savedEmail}" placeholder="example@mail.com" required></div>
-                    <button type="submit" class="whatsapp-btn" style="background:var(--gradient-main);">حفظ البيانات</button>
-                </form>
-                ${myReviewsHTML}
+                <div class="profile-modal-wrapper">
+                    <label class="profile-avatar-container" for="modalAvatarInput">
+                        <input type="file" id="modalAvatarInput" accept="image/*" onchange="handleModalAvatar(this)">
+                        <div class="profile-avatar-ring">
+                            <div class="profile-avatar-inner">
+                                <svg style="${iconDisplay}" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                <img id="modalAvatarImg" src="${savedAvatar}" style="${avatarDisplay}" alt="">
+                            </div>
+                        </div>
+                        <div class="profile-camera-badge">
+                            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        </div>
+                    </label>
+                    
+                    <div class="profile-welcome">${savedName ? `مرحباً، ${savedName} 👋` : 'سجّل بياناتك عشان تستمتع بكل المميزات'}</div>
+                    
+                    <form class="profile-form" onsubmit="handleProfileSave(event)">
+                        <div class="form-group">
+                            <label class="form-label">الاسم</label>
+                            <input type="text" id="modalName" class="form-input" value="${savedName}" placeholder="اكتب اسمك..." required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الإيميل</label>
+                            <input type="email" id="modalEmail" class="form-input" value="${savedEmail}" placeholder="example@mail.com" required>
+                        </div>
+                        <button type="submit" class="profile-save-btn">حفظ البيانات</button>
+                    </form>
+
+                    <div class="profile-stats">
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-value">${orderCount}</span>
+                            <span class="profile-stat-label">طلباتي</span>
+                        </div>
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-value" style="font-size:0.9rem;">${joinDate}</span>
+                            <span class="profile-stat-label">تاريخ الانضمام</span>
+                        </div>
+                    </div>
+                </div>
             `;
             modalOverlay.classList.add('active');
             document.body.classList.add('modal-open');
@@ -659,40 +626,14 @@
                 reader.onload = (e) => {
                     const newAvatar = e.target.result;
                     localStorage.setItem('ybn_avatar', newAvatar);
-                    
-                    // Update top bar
                     updateAllAvatars(newAvatar);
-                    
-                    // Update modal preview
                     const img = document.getElementById('modalAvatarImg');
                     if(img) { img.src = newAvatar; img.style.display = 'block'; }
-                    const svg = document.querySelector('.profile-modal-avatar svg');
+                    const svg = document.querySelector('.profile-avatar-inner svg');
                     if(svg) svg.style.display = 'none';
-                    
-                    // ⭐ SYNC: Update avatar in ALL existing reviews
-                    syncAvatarInReviews(newAvatar);
-                    
                     showToast('تم تحديث الصورة ✓', 'success');
                 };
                 reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        function syncAvatarInReviews(newAvatar) {
-            const name = localStorage.getItem('ybn_profile_name');
-            if (!name) return;
-            
-            const reviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
-            let updated = false;
-            reviews.forEach(r => {
-                if (r.name === name) {
-                    r.avatar = newAvatar;
-                    updated = true;
-                }
-            });
-            if (updated) {
-                localStorage.setItem('ybn_reviews', JSON.stringify(reviews));
-                renderReviews(); // Re-render to show updated avatars
             }
         }
 
@@ -702,18 +643,13 @@
             const email = document.getElementById('modalEmail').value.trim();
             if (!name || !email) { showToast('يرجى ملء جميع الحقول', 'error'); return; }
             
-            const oldName = localStorage.getItem('ybn_profile_name');
-            localStorage.setItem('ybn_profile_name', name);
-            localStorage.setItem('ybn_profile_email', email);
-            
-            // If name changed, update reviews with old name
-            if (oldName && oldName !== name) {
-                const reviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
-                reviews.forEach(r => { if (r.name === oldName) r.name = name; });
-                localStorage.setItem('ybn_reviews', JSON.stringify(reviews));
-                renderReviews();
+            // Save join date if first time
+            if (!localStorage.getItem('ybn_join_date')) {
+                localStorage.setItem('ybn_join_date', new Date().toLocaleDateString('ar-EG'));
             }
             
+            localStorage.setItem('ybn_profile_name', name);
+            localStorage.setItem('ybn_profile_email', email);
             updateTopBar(name);
             closeModal();
             showToast('تم حفظ بياناتك بنجاح ✓', 'success');
@@ -765,6 +701,7 @@
             if(!gov.value){document.getElementById('num-group-gov').classList.add('error');v=false;}else{document.getElementById('num-group-gov').classList.remove('error');}
             if(!v) return;
             const oid='NUM-'+Math.floor(100000+Math.random()*900000);
+            localStorage.setItem('ybn_order_'+oid, Date.now());
             const msg=`مرحبًا، أريد طلب رقم جديد.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nطريقة الاختيار: ${selectedNumberType}\nرقم الطلب: ${oid}`;
             window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
             closeModal(); showToast('تم تحويلك إلى WhatsApp','success');
@@ -785,6 +722,7 @@
             if(!gov.value){document.getElementById('team-group-gov').classList.add('error');v=false;}else{document.getElementById('team-group-gov').classList.remove('error');}
             if(!v) return;
             const oid='TEAM-'+Math.floor(100000+Math.random()*900000);
+            localStorage.setItem('ybn_order_'+oid, Date.now());
             const msg=`مرحبًا، أريد الاشتراك في عرض فريق العمل (خطين).\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nرقم الطلب: ${oid}`;
             window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
             closeModal(); showToast('تم تحويلك إلى WhatsApp','success');
@@ -816,73 +754,11 @@
             if(!gov.value){document.getElementById('group-gov').classList.add('error');v=false;}else{document.getElementById('group-gov').classList.remove('error');}
             if(!v) return;
             const oid='ORDER-'+Math.floor(100000+Math.random()*900000);
+            localStorage.setItem('ybn_order_'+oid, Date.now());
             const now=new Date();
             const msg=`مرحبًا، أريد الاشتراك في باقة.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nنوع الباقة: ${currentSelectedPlan.typeName}\nالباقة: ${currentSelectedPlan.value} ${currentSelectedPlan.unit}\nسعر البيع: ${currentSelectedPlan.sell} جنيه\nالتوفير: ${currentSelectedPlan.company-currentSelectedPlan.sell} جنيه\nرقم الطلب: ${oid}\nالتاريخ: ${now.toLocaleDateString('ar-EG')} ${now.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}`;
             window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
             closeModal(); showToast('تم تحويلك إلى WhatsApp','success');
-        }
-
-        // ===== ⭐ REVIEWS SYSTEM WITH DELETE & SYNC =====
-        document.querySelectorAll('#starRating .star').forEach(star => {
-            star.addEventListener('click', () => { selectedRating = parseInt(star.dataset.value); updateStars(selectedRating); });
-            star.addEventListener('mouseenter', () => { updateStars(parseInt(star.dataset.value)); });
-        });
-        document.getElementById('starRating').addEventListener('mouseleave', () => { updateStars(selectedRating); });
-        function updateStars(val) { document.querySelectorAll('#starRating .star').forEach(s => { s.classList.toggle('active', parseInt(s.dataset.value) <= val); }); }
-
-        function submitReview() {
-            const text = document.getElementById('reviewText').value.trim();
-            const name = localStorage.getItem('ybn_profile_name');
-            const avatar = localStorage.getItem('ybn_avatar') || null;
-            
-            if (!name) { showToast('سجّل حسابك الأول عشان تقدر تعلق', 'error'); openProfileModal(); return; }
-            if (selectedRating === 0) { showToast('يرجى اختيار عدد النجوم', 'error'); return; }
-            if (!text) { showToast('يرجى كتابة تعليقك', 'error'); return; }
-            
-            const review = { id: Date.now(), name, avatar, rating: selectedRating, text, date: new Date().toLocaleDateString('ar-EG') };
-            const reviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
-            reviews.unshift(review);
-            localStorage.setItem('ybn_reviews', JSON.stringify(reviews));
-            
-            document.getElementById('reviewText').value = '';
-            selectedRating = 0; updateStars(0);
-            renderReviews();
-            showToast('تم إضافة تعليقك بنجاح ✓', 'success');
-        }
-
-        function deleteReview(id) {
-            if (!confirm('متأكد إنك عايز تحذف التعليق ده؟')) return;
-            const reviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
-            const filtered = reviews.filter(r => r.id !== id);
-            localStorage.setItem('ybn_reviews', JSON.stringify(filtered));
-            renderReviews();
-            showToast('تم حذف التعليق ✓', 'success');
-        }
-
-        function renderReviews() {
-            const reviews = JSON.parse(localStorage.getItem('ybn_reviews') || '[]');
-            const list = document.getElementById('reviewsList');
-            const myName = localStorage.getItem('ybn_profile_name') || '';
-            
-            if (reviews.length === 0) { list.innerHTML = '<div class="no-reviews">لا توجد تعليقات بعد. كن أول من يشارك رأيه! 💬</div>'; return; }
-            
-            const starSVG = '<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
-            const emptySVG = '<svg class="empty" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
-            const deleteSVG = '<svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
-            
-            list.innerHTML = reviews.map(r => {
-                const stars = Array.from({length:5},(_,i)=>i<r.rating?starSVG:emptySVG).join('');
-                const avHTML = r.avatar ? `<div class="review-avatar"><img src="${r.avatar}" alt="${r.name}"></div>` : `<div class="review-avatar">${r.name.charAt(0)}</div>`;
-                const canDelete = (r.name === myName && myName !== '') ? 'can-delete' : '';
-                const deleteBtn = canDelete ? `<button class="review-delete-btn ${canDelete}" onclick="deleteReview(${r.id})" title="حذف التعليق">${deleteSVG}</button>` : '';
-                
-                return `<div class="review-card fade-up visible">
-                    ${deleteBtn}
-                    <div class="review-card-header">${avHTML}<div class="review-info"><h5>${r.name}</h5><div class="review-stars">${stars}</div></div></div>
-                    <div class="review-text">${r.text}</div>
-                    <div class="review-date">${r.date}</div>
-                </div>`;
-            }).join('');
         }
 
         // ===== TOAST =====
@@ -913,7 +789,7 @@
         // ===== INIT =====
         document.addEventListener('DOMContentLoaded',()=>{
             resizeCanvas(); animateCanvas(); loadServices(); observeFadeUp();
-            renderPackages(unitsPlans,'وحدات'); initVisitorCounter(); loadProfile(); renderReviews();
+            renderPackages(unitsPlans,'وحدات'); initVisitorCounter(); loadProfile();
         });
     </script>
 </body>
