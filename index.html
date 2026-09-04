@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>YOUR_BRAND_NAME | عروض وخدمات اتصالات</title>
-    
+<title>فودافون | عروض وخدمات اتصالات</title>    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -294,15 +293,28 @@
             .hero::after { width: 120px; height: 120px; }
             .id-card-notice { padding: 12px 14px; }
             .id-card-notice-text { font-size: 0.8rem; }
+           /* ===== LOGO IMAGE STYLES ===== */
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            display: block;
         }
-    </style>
+
+        .loader-logo img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+    </style>   <!-- 👈 الصق الكود فوق قبل السطر ده بالظبط -->
 </head>
 <body>
 
     <!-- PRELOADER -->
     <div id="preloader">
-        <div class="loader-logo"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <div class="loader-bar-container"><div class="loader-bar"></div></div>
+<div class="loader-logo" style="background: transparent; box-shadow: none;">
+    <img src="logo.png" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
+</div>        <div class="loader-bar-container"><div class="loader-bar"></div></div>
         <div class="loader-text">جاري التحميل...</div>
     </div>
 
@@ -329,10 +341,13 @@
     <header id="navbar">
         <div class="container">
             <nav>
-                <a href="#" class="logo">
-                    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-                    <div class="logo-text">YOUR_<span>BRAND</span></div>
-                </a>
+               <a href="#" class="logo">
+    <!-- لو اللوجو فيه صورة واسم مع بعض -->
+    <img src="logo.png" alt="Logo" style="height: 40px; width: auto;">
+    <!-- أو لو عايز الصورة + النص جنبها -->
+    <!-- <div class="logo-icon" style="background: none; box-shadow: none;"><img src="icon.png" style="width:100%;height:100%;"></div> -->
+    <!-- <div class="logo-text">اسم_<span>شركتك</span></div> -->
+</a>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#hero" data-section="hero"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>الرئيسية</a></li>
                     <li><a href="#get-number" data-section="get-number"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>رقمي</a></li>
@@ -448,8 +463,7 @@
                 <span class="footer-link" data-modal="contact">تواصل معنا</span>
                 <span class="footer-link" data-modal="service-explain">شرح الخدمة</span>
             </div>
-            <p class="footer-copyright">&copy; 2060 YOUR_BRAND_NAME. جميع الحقوق محفوظة.</p>
-            <p class="footer-disclaimer">
+<p class="footer-copyright">&copy; 2025 فودافون. جميع الحقوق محفوظة.</p>            <p class="footer-disclaimer">
                 تنويه: هذا الموقع منصة مستقلة لعرض الخدمات والعروض، وليس موقعًا رسميًا لأي شركة اتصالات، ولا يمثل أو ينتمي إلى أي شركة إلا إذا تم توضيح ذلك بشكل صريح. الأسماء والعلامات التجارية المذكورة هي ملك لأصحابها وتستخدم لأغراض الوصف فقط.
             </p>
             <div class="footer-dev" onclick="openDevModal()">
