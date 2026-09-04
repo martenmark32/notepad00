@@ -459,7 +459,7 @@
         </div>
     </footer>
 
-    <script>
+       <script>
         // ===== PRELOADER =====
         window.addEventListener('load', () => { setTimeout(() => { document.getElementById('preloader').classList.add('hidden'); }, 1500); });
 
@@ -559,7 +559,6 @@
                     </div>
                 </div>
                 
-                <!-- سعر الخط -->
                 <div class="order-summary" style="margin-top:20px; margin-bottom:20px;">
                     <div class="order-row total" style="border:none; padding:0; margin:0; justify-content:center; text-align:center;">
                         <span style="color:#fff;">سعر الخط:</span>
@@ -589,7 +588,6 @@
                     </ul>
                 </div>
 
-                <!-- سعر الخطين -->
                 <div class="order-summary" style="margin-top:20px; margin-bottom:20px;">
                     <div class="order-row total" style="border:none; padding:0; margin:0; justify-content:center; text-align:center;">
                         <span style="color:#fff;">سعر الخطين:</span>
@@ -605,7 +603,7 @@
             modalOverlay.classList.add('active'); document.body.classList.add('modal-open');
         }
 
-        // ===== ⭐ FORM HANDLERS (ADDED & FIXED) =====
+        // ===== ⭐ FORM HANDLERS (CLEANED) =====
         function selectNumberType(el, type) {
             document.querySelectorAll('.number-type-option').forEach(o => o.classList.remove('selected'));
             el.classList.add('selected');
@@ -626,10 +624,7 @@
 
             if (!v) return;
 
-            const oid = 'NUM-' + Math.floor(100000 + Math.random() * 900000);
-            localStorage.setItem('ybn_order_' + oid, Date.now());
-
-            const waUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد طلب رقم جديد.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nطريقة الاختيار: ${selectedNumberType}\nسعر الخط: 200 جنيه\nرقم الطلب: ${oid}\n\n⚠️ ملحوظة: هتبعت صورة بطاقة الرقم القومي هنا عشان نكمل التفعيل.`)}`;
+            const waUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد طلب رقم جديد.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nطريقة الاختيار: ${selectedNumberType}\nسعر الخط: 200 جنيه`)}`;
 
             const tempLink = document.createElement('a');
             tempLink.href = waUrl;
@@ -657,10 +652,7 @@
 
             if (!v) return;
 
-            const oid = 'TEAM-' + Math.floor(100000 + Math.random() * 900000);
-            localStorage.setItem('ybn_order_' + oid, Date.now());
-
-            const waUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد الاشتراك في عرض فريق العمل (خطين).\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nسعر الخطين: 380 جنيه\nرقم الطلب: ${oid}\n\n⚠️ ملحوظة: هتبعت صورة بطاقة الرقم القومي هنا عشان نكمل التفعيل.`)}`;
+            const waUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد الاشتراك في عرض فريق العمل (خطين).\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nسعر الخطين: 380 جنيه`)}`;
 
             const tempLink = document.createElement('a');
             tempLink.href = waUrl;
@@ -694,9 +686,8 @@
             if(!name.value.trim()){document.getElementById('group-name').classList.add('error');v=false;}else{document.getElementById('group-name').classList.remove('error');}
             if(!gov.value){document.getElementById('group-gov').classList.add('error');v=false;}else{document.getElementById('group-gov').classList.remove('error');}
             if(!v) return;
-            const oid='ORDER-'+Math.floor(100000+Math.random()*900000); localStorage.setItem('ybn_order_'+oid, Date.now()); const now=new Date();
             
-            const waUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد الاشتراك في باقة.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nنوع الباقة: ${currentSelectedPlan.typeName}\nالباقة: ${currentSelectedPlan.value} ${currentSelectedPlan.unit}\nسعر البيع: ${currentSelectedPlan.sell} جنيه\nالتوفير: ${currentSelectedPlan.company-currentSelectedPlan.sell} جنيه\nرقم الطلب: ${oid}\nالتاريخ: ${now.toLocaleDateString('ar-EG')} ${now.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}\n\n⚠️ ملحوظة: هتبعت صورة بطاقة الرقم القومي هنا عشان نكمل التفعيل.`)}`;
+            const waUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحبًا، أريد الاشتراك في باقة.\n\nالاسم: ${name.value}\nالمحافظة: ${gov.value}\nنوع الباقة: ${currentSelectedPlan.typeName}\nالباقة: ${currentSelectedPlan.value} ${currentSelectedPlan.unit}\nسعر البيع: ${currentSelectedPlan.sell} جنيه\nالتوفير: ${currentSelectedPlan.company-currentSelectedPlan.sell} جنيه`)}`;
 
             const tempLink = document.createElement('a');
             tempLink.href = waUrl;
