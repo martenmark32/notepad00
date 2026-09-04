@@ -3,56 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>فودافون | عروض وخدمات اتصالات</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-deep: #050507;
-            --surface-glass: rgba(20, 20, 25, 0.6);
-            --surface-glass-hover: rgba(30, 30, 40, 0.8);
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-highlight: rgba(255, 255, 255, 0.2);
-            --accent-cyan: #00e5ff;
-            --accent-purple: #b026ff;
-            --accent-pink: #ff2d7b;
-            --gradient-main: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            --gradient-text: linear-gradient(135deg, #fff 0%, #a5c9ff 50%, var(--accent-purple) 100%);
-            --radius-xl: 24px;
-            --radius-lg: 16px;
-            --container: 1200px;
-            --font: 'Cairo', sans-serif;
-            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        html, body { width: 100%; overflow-x: hidden !important; position: relative; }
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
-        html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-deep); color: #fff; font-family: var(--font); line-height: 1.7; }
-        body.modal-open { overflow: hidden; }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple)); border-radius: 10px; border: 1px solid var(--bg-deep); }
-        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--accent-purple), var(--accent-cyan)); }
-        * { scrollbar-width: thin; scrollbar-color: var(--accent-cyan) var(--bg-deep); }
-
-        /* PRELOADER */
-        #preloader { position: fixed; inset: 0; z-index: 99999; background: var(--bg-deep); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease, visibility 0.5s ease; }
-        #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .loader-logo { width: 70px; height: 70px; border-radius: 20px; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; margin-bottom: 25px; animation: pulseLoader 2s infinite ease-in-out; box-shadow: 0 0 30px rgba(0,229,255,0.2); }
-        .loader-logo svg { width: 38px; height: 38px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap:تمام، ده الكود كامل بعد التعديل. كل اللي عليك تنسخه وتحطه مكان الكود القديم:
-
-```html
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>فودافون | عروض وخدمات اتصالات</title>
+    <title>خطك | Khatak - عروض وخدمات اتصالات</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -344,25 +295,6 @@
             .id-card-notice { padding: 12px 14px; }
             .id-card-notice-text { font-size: 0.8rem; }
         }
-
-        /* ===== LOGO IMAGE STYLES ===== */
-        .logo img {
-            height: 40px;
-            width: auto;
-            object-fit: contain;
-            display: block;
-        }
-
-        .loader-logo {
-            background: transparent !important;
-            box-shadow: none !important;
-        }
-
-        .loader-logo img {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-        }
     </style>
 </head>
 <body>
@@ -370,7 +302,14 @@
     <!-- PRELOADER -->
     <div id="preloader">
         <div class="loader-logo">
-            <img src="logo.png" alt="فودافون">
+            <!-- SIM Card Logo SVG -->
+            <svg viewBox="0 0 24 24">
+                <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" />
+                <path d="M3 8L8 3" />
+                <rect x="7" y="10" width="10" height="7" rx="1" />
+                <path d="M7 13.5H17" />
+                <path d="M12 10V17" />
+            </svg>
         </div>
         <div class="loader-bar-container"><div class="loader-bar"></div></div>
         <div class="loader-text">جاري التحميل...</div>
@@ -400,7 +339,17 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">
-                    <img src="logo.png" alt="فودافون">
+                    <div class="logo-icon">
+                        <!-- SIM Card Logo SVG -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" />
+                            <path d="M3 8L8 3" />
+                            <rect x="7" y="10" width="10" height="7" rx="1" />
+                            <path d="M7 13.5H17" />
+                            <path d="M12 10V17" />
+                        </svg>
+                    </div>
+                    <div class="logo-text">خطك | <span>Khatak</span></div>
                 </a>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#hero" data-section="hero"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>الرئيسية</a></li>
@@ -517,7 +466,7 @@
                 <span class="footer-link" data-modal="contact">تواصل معنا</span>
                 <span class="footer-link" data-modal="service-explain">شرح الخدمة</span>
             </div>
-            <p class="footer-copyright">&copy; 2025 فودافون. جميع الحقوق محفوظة.</p>
+            <p class="footer-copyright">&copy; 2026 خطك | Khatak. جميع الحقوق محفوظة.</p>
             <p class="footer-disclaimer">
                 تنويه: هذا الموقع منصة مستقلة لعرض الخدمات والعروض، وليس موقعًا رسميًا لأي شركة اتصالات، ولا يمثل أو ينتمي إلى أي شركة إلا إذا تم توضيح ذلك بشكل صريح. الأسماء والعلامات التجارية المذكورة هي ملك لأصحابها وتستخدم لأغراض الوصف فقط.
             </p>
@@ -528,7 +477,7 @@
         </div>
     </footer>
 
-    <script>
+       <script>
         // ===== PRELOADER =====
         window.addEventListener('load', () => { setTimeout(() => { document.getElementById('preloader').classList.add('hidden'); }, 1500); });
 
@@ -566,7 +515,7 @@
             about: { title: "عن الموقع", html: `<div class="modal-content"><h4>من نحن</h4><p>نحن منصة مستقلة متخصصة في عرض خدمات وعروض الاتصالات بأفضل الأسعار.</p><h4>ليه تختارنا؟</h4><ul><li>عروض محدثة يومياً بأفضل الأسعار</li><li>شرح واضح ومفصل لكل باقة</li><li>دعم فني متاح 24/7</li><li>تفعيل فوري للخدمات</li></ul><span class="last-updated">آخر تحديث: سبتمبر 2026</span></div>` },
             privacy: { title: "سياسة الخصوصية", html: `<div class="modal-content"><h4>١. مقدمة</h4><p>خصوصيتك مهمة لنا. نحمي بياناتك ولا نشاركها مع أطراف ثالثة.</p><h4>٢. البيانات التي نجمعها</h4><ul><li>الاسم والبريد الإلكتروني عند التسجيل</li><li>تفاصيل الطلبات والمحافظة</li></ul><h4>٣. حقوقك</h4><p>لك الحق في الوصول لبياناتك أو تعديلها أو حذفها في أي وقت.</p><span class="last-updated">آخر تحديث: سبتمبر 2026</span></div>` },
             terms: { title: "شروط الاستخدام", html: `<div class="modal-content"><h4>١. القبول بالشروط</h4><p>باستخدامك للمنصة، فإنك توافق على هذه الشروط.</p><h4>٢. طبيعة الخدمة</h4><ul><li>المنصة وسيط لعرض العروض وليست شركة اتصالات</li><li>الأسعار قابلة للتغيير دون إشعار</li></ul><span class="last-updated">آخر تحديث: سبتمبر 2026</span></div>` },
-            contact: { title: "تواصل معنا", html: `<div class="modal-content"><h4>نحن هنا لمساعدتك</h4><ul><li>📞 +201289906121</li><li>💬 +201289906121</li><li>✉️ support@yourbrand.com</li></ul><p>الدعم الفني: 24/7</p><span class="last-updated">نتطلع لسماع منك 💜</span></div>` },
+            contact: { title: "تواصل معنا", html: `<div class="modal-content"><h4>نحن هنا لمساعدتك</h4><ul><li>📞 +201289906121</li><li>💬 +201289906121</li><li>✉️ support@khatak.com</li></ul><p>الدعم الفني: 24/7</p><span class="last-updated">نتطلع لسماع منك 💜</span></div>` },
             "service-explain": { title: "شرح الخدمة", html: `<div class="modal-content"><h4>إزاي الخدمة بتشتغل؟</h4><p>اختار الباقة، سيب بياناتك، وهنتواصل معاك للتفعيل.</p><h4>خطوات الاشتراك</h4><ul><li>اختار الباقة أو الرقم المناسب</li><li>سيب بياناتك الأساسية</li><li>هنتواصل معاك عبر WhatsApp</li><li>استلم الخط وابدأ استخدمه</li></ul><h4>أنواع الخدمات</h4><ul><li>خطوط جديدة بأرقام مميزة</li><li>باقات وحدات بأسعار مخفضة</li><li>باقات ميجا إنترنت</li><li>فريق العمل (مكالمات مجانية)</li></ul><span class="last-updated">آخر تحديث: سبتمبر 2026</span></div>` }
         };
 
@@ -672,7 +621,7 @@
             modalOverlay.classList.add('active'); document.body.classList.add('modal-open');
         }
 
-        // ===== FORM HANDLERS =====
+        // ===== ⭐ FORM HANDLERS (CLEANED) =====
         function selectNumberType(el, type) {
             document.querySelectorAll('.number-type-option').forEach(o => o.classList.remove('selected'));
             el.classList.add('selected');
